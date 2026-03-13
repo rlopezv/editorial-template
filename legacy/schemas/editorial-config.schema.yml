@@ -1,0 +1,19 @@
+# ============================================================
+# SCHEMA: editorial-config.yml
+# ============================================================
+# Validation schema for inception/editorial-config.yml
+# To be developed when scripts/validate-structure.sh is implemented.
+#
+# Required sections:
+#   - scope (objetivo, dominio.cubre, dominio.no_cubre, propuesta_valor_diferencial)
+#   - publico (forma_lectura, nivel_entrada, perfiles[])
+#   - autor (conocimiento[alta_confianza, media_confianza, validacion_externa])
+#   - taxonomia_capitulos (tipos[])
+#   - paths (ficheros[])
+#   - calidad (umbrales por estado)
+#   - politica_ia (referencia a ai-usage-policy.yml)
+#   - snapshots (criterios, convencion_version)
+#   - fases (lista con estado por fase)
+# ============================================================
+
+# Placeholder — schema definition pending scripts/ implementation

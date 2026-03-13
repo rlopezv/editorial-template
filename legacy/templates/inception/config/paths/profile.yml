@@ -1,0 +1,54 @@
+# ============================================================
+# AUDIENCE PROFILE
+# ============================================================
+# Define un perfil de lector con su path de lectura.
+# Un fichero por perfil declarado en editorial-config.yml.
+# Generado en Phase 0 — Inception, Decision 2.
+#
+# Nombrar como: [perfil-id].yml
+# Ver examples/ para instancias de referencia completas.
+# ============================================================
+
+perfil:
+  id: ""
+  nombre: ""
+  pregunta_dominante: ""
+  # La pregunta que domina su lectura.
+  # Ej: "¿Qué construimos y por qué?" | "¿Cómo lo construimos?" | "¿Cómo lo sostenemos?"
+  forma_lectura: ""
+
+conocimiento_previo: []
+  # Qué sabe el lector que es relevante para este proyecto.
+
+gaps_tipicos: []
+  # Qué le falta al lector de este perfil.
+
+transferencias_peligrosas:
+  descripcion: >
+    # Conocimiento previo del lector que se transfiere incorrectamente
+    # al dominio de este libro.
+  lista: []
+
+# ------------------------------------------------------------
+# PATH DE LECTURA
+# ------------------------------------------------------------
+
+zona_entrada:
+  descripcion: ""
+  enfasis: ""
+  capitulos: []
+
+zona_nucleo:
+  descripcion: ""
+  enfasis_especifico: ""
+  capitulos: []
+
+zona_especializada:
+  descripcion: ""
+  temas_esperados: []
+  capitulos: []
+
+labs:
+  enfasis: ""
+  labs_primarios: []
+  variantes_de_labs_otros_perfiles: []

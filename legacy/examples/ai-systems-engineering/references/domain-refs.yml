@@ -1,0 +1,620 @@
+# ============================================================
+# DOMAIN REFERENCES
+# AI Systems Engineering — Instancia Pedagógica
+# ============================================================
+# Corpus de referencias del dominio organizado por sección.
+# Tres niveles de uso:
+#   - evaluacion: calibrar profundidad y cobertura de capítulos
+#   - lector: aparecer en referencias del capítulo publicado
+#   - ambos: los dos usos anteriores
+#
+# Estado de verificación:
+#   - verificado: URL confirmada y recurso accesible
+#   - pendiente: identificado pero sin verificar
+#   - post-cutoff: puede existir versión más reciente
+#
+# Este fichero se construye progresivamente.
+# Generado en Phase 0 — Inception como hipótesis inicial.
+# Enriquecer durante Phase 2 y Phase 4.
+# ============================================================
+
+meta:
+  version: v0
+  generado_en: phase-0-inception
+  fecha: 2026-03-10
+  cobertura: por-seccion
+  tipos_incluidos:
+    - papers-academicos-fundacionales
+    - libros-tecnicos-referencia
+    - documentacion-oficial-frameworks
+    - engineering-blogs-empresas-referencia
+  nota: >
+    Todas las URLs requieren verificación antes de incluir
+    en capítulos publicados. Ver ai-usage-policy.yml para
+    política de verificación de referencias.
+
+# ------------------------------------------------------------
+# REFERENCIAS CANÓNICAS DEL DOMINIO
+# Aplican al libro completo — no a una sección específica
+# ------------------------------------------------------------
+canonicas:
+
+  - id: ref-designing-ml-systems
+    tipo: libro
+    titulo: "Designing Machine Learning Systems"
+    autores: ["Chip Huyen"]
+    año: 2022
+    editorial: "O'Reilly Media"
+    url: https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/
+    funcion: [calibracion-nivel-tecnico, referencia-arquitectura]
+    uso: [evaluacion, lector]
+    dominio: [ml-systems, mlops, evaluacion]
+    verificado: pendiente
+    nota: >
+      Referencia principal de calibración de nivel técnico
+      declarada en editorial-config.yml.
+
+  - id: ref-designing-data-intensive
+    tipo: libro
+    titulo: "Designing Data-Intensive Applications"
+    autores: ["Martin Kleppmann"]
+    año: 2017
+    editorial: "O'Reilly Media"
+    url: https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/
+    funcion: [referencia-patrones-sistemas, calibracion-nivel-tecnico]
+    uso: [evaluacion, lector]
+    dominio: [sistemas-distribuidos, arquitectura, datos]
+    verificado: pendiente
+    nota: >
+      Referencia de patrones de sistemas declarada en
+      editorial-config.yml. Útil para calibrar nivel de
+      profundidad en capítulos de arquitectura e infraestructura.
+
+  - id: ref-attention-is-all-you-need
+    tipo: paper
+    titulo: "Attention Is All You Need"
+    autores: ["Vaswani et al."]
+    año: 2017
+    venue: "NeurIPS"
+    url: https://arxiv.org/abs/1706.03762
+    funcion: [fundacional, contexto-historico]
+    uso: [evaluacion, lector]
+    dominio: [fundamentos, transformers]
+    verificado: pendiente
+
+  - id: ref-llm-few-shot-learners
+    tipo: paper
+    titulo: "Language Models are Few-Shot Learners"
+    autores: ["Brown et al."]
+    año: 2020
+    venue: "NeurIPS"
+    url: https://arxiv.org/abs/2005.14165
+    funcion: [fundacional, capacidades-llm]
+    uso: [evaluacion, lector]
+    dominio: [fundamentos, llms]
+    verificado: pendiente
+
+# ------------------------------------------------------------
+# SECCIÓN 1 — FOUNDATIONS
+# ------------------------------------------------------------
+seccion_1_foundations:
+
+  papers:
+    - id: ref-software-2-karpathy
+      tipo: articulo
+      titulo: "Software 2.0"
+      autores: ["Andrej Karpathy"]
+      año: 2017
+      url: https://karpathy.medium.com/software-2-0-a64152b37c35
+      funcion: [fundacional, paradigma-software]
+      uso: [evaluacion, lector]
+      dominio: [fundamentos, paradigma]
+      verificado: pendiente
+
+    - id: ref-stochastic-parrots
+      tipo: paper
+      titulo: "On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?"
+      autores: ["Bender et al."]
+      año: 2021
+      venue: "FAccT"
+      url: https://dl.acm.org/doi/10.1145/3442188.3445922
+      funcion: [limitaciones-llm, perspectiva-critica]
+      uso: [evaluacion, lector]
+      dominio: [fundamentos, limitaciones, etica]
+      verificado: pendiente
+
+  libros:
+    - id: ref-build-llm-apps
+      tipo: libro
+      titulo: "Building LLM Apps"
+      autores: ["Valentina Alto"]
+      año: 2023
+      editorial: "Packt"
+      url: https://www.packtpub.com/product/building-llm-powered-applications/9781835462317
+      funcion: [referencia-introduccion, contexto-ecosistema]
+      uso: [evaluacion]
+      dominio: [fundamentos, llm-applications]
+      verificado: pendiente
+
+  documentacion:
+    - id: ref-openai-docs
+      tipo: documentacion
+      titulo: "OpenAI Platform Documentation"
+      organizacion: "OpenAI"
+      url: https://platform.openai.com/docs
+      funcion: [referencia-api, ejemplos-prompts]
+      uso: [evaluacion, lector]
+      dominio: [fundamentos, prompt-engineering, llms]
+      verificado: pendiente
+      nota: post-cutoff — verificar versión actual
+
+    - id: ref-anthropic-docs
+      tipo: documentacion
+      titulo: "Anthropic Documentation"
+      organizacion: "Anthropic"
+      url: https://docs.anthropic.com
+      funcion: [referencia-api, prompt-engineering]
+      uso: [evaluacion, lector]
+      dominio: [fundamentos, prompt-engineering]
+      verificado: pendiente
+      nota: post-cutoff — verificar versión actual
+
+    - id: ref-huggingface-docs
+      tipo: documentacion
+      titulo: "Hugging Face Documentation"
+      organizacion: "Hugging Face"
+      url: https://huggingface.co/docs
+      funcion: [referencia-modelos, referencia-tokenizacion]
+      uso: [evaluacion, lector]
+      dominio: [fundamentos, modelos, tokenizacion]
+      verificado: pendiente
+
+# ------------------------------------------------------------
+# SECCIÓN 2 — ARCHITECTURE
+# ------------------------------------------------------------
+seccion_2_architecture:
+
+  papers:
+    - id: ref-rag-lewis-2020
+      tipo: paper
+      titulo: "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+      autores: ["Lewis et al."]
+      año: 2020
+      venue: "NeurIPS"
+      url: https://arxiv.org/abs/2005.11401
+      funcion: [fundacional-rag, referencia-arquitectura]
+      uso: [evaluacion, lector]
+      dominio: [rag, retrieval, arquitectura]
+      verificado: pendiente
+      capitulos_relacionados: [13, 14, 24, 25]
+
+    - id: ref-react-yao-2022
+      tipo: paper
+      titulo: "ReAct: Synergizing Reasoning and Acting in Language Models"
+      autores: ["Yao et al."]
+      año: 2022
+      venue: "ICLR"
+      url: https://arxiv.org/abs/2210.03629
+      funcion: [fundacional-agentes, patron-razonamiento]
+      uso: [evaluacion, lector]
+      dominio: [agentes, razonamiento, tool-use]
+      verificado: pendiente
+      capitulos_relacionados: [17, 18]
+
+    - id: ref-reflexion-shinn-2023
+      tipo: paper
+      titulo: "Reflexion: Language Agents with Verbal Reinforcement Learning"
+      autores: ["Shinn et al."]
+      año: 2023
+      url: https://arxiv.org/abs/2303.11366
+      funcion: [agentes-avanzados, memoria-agentes]
+      uso: [evaluacion, lector]
+      dominio: [agentes, memoria]
+      verificado: pendiente
+      capitulos_relacionados: [17, 18]
+
+    - id: ref-chain-of-thought-wei-2022
+      tipo: paper
+      titulo: "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models"
+      autores: ["Wei et al."]
+      año: 2022
+      venue: "NeurIPS"
+      url: https://arxiv.org/abs/2201.11903
+      funcion: [prompt-engineering-avanzado, razonamiento]
+      uso: [evaluacion, lector]
+      dominio: [prompt-engineering, razonamiento]
+      verificado: pendiente
+      capitulos_relacionados: [12, 15]
+
+  libros:
+    - id: ref-llm-engineering-oreilly
+      tipo: libro
+      titulo: "LLM Engineer's Handbook"
+      autores: ["Paul Iusztin", "Maxime Labonne"]
+      año: 2024
+      editorial: "Packt"
+      url: https://www.packtpub.com/product/llm-engineers-handbook/9781836200079
+      funcion: [referencia-arquitectura, implementacion]
+      uso: [evaluacion, lector]
+      dominio: [arquitectura, llm-systems, mlops]
+      verificado: pendiente
+
+  documentacion:
+    - id: ref-langchain-docs
+      tipo: documentacion
+      titulo: "LangChain Documentation"
+      organizacion: "LangChain"
+      url: https://python.langchain.com
+      funcion: [referencia-framework, patrones-implementacion]
+      uso: [evaluacion, lector]
+      dominio: [arquitectura, rag, agentes, workflow]
+      verificado: pendiente
+      nota: post-cutoff — framework en evolución rápida
+
+    - id: ref-llamaindex-docs
+      tipo: documentacion
+      titulo: "LlamaIndex Documentation"
+      organizacion: "LlamaIndex"
+      url: https://docs.llamaindex.ai
+      funcion: [referencia-rag, patrones-retrieval]
+      uso: [evaluacion, lector]
+      dominio: [rag, retrieval, indexing]
+      verificado: pendiente
+      nota: post-cutoff — verificar versión actual
+
+    - id: ref-langchain4j-docs
+      tipo: documentacion
+      titulo: "LangChain4j Documentation"
+      organizacion: "LangChain4j"
+      url: https://docs.langchain4j.dev
+      funcion: [referencia-java, implementacion-java]
+      uso: [evaluacion, lector]
+      dominio: [arquitectura, java, implementacion]
+      verificado: pendiente
+      nota: >
+        Especialmente relevante para el público objetivo
+        con base en Java.
+
+# ------------------------------------------------------------
+# SECCIÓN 3 — ENGINEERING PRACTICES
+# ------------------------------------------------------------
+seccion_3_engineering:
+
+  papers:
+    - id: ref-llm-as-judge-zheng
+      tipo: paper
+      titulo: "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena"
+      autores: ["Zheng et al."]
+      año: 2023
+      url: https://arxiv.org/abs/2306.05685
+      funcion: [evaluacion-llm, metodologia-evaluacion]
+      uso: [evaluacion, lector]
+      dominio: [evaluacion, quality-assessment]
+      verificado: pendiente
+      capitulos_relacionados: [26, 27]
+
+    - id: ref-ragas-paper
+      tipo: paper
+      titulo: "RAGAS: Automated Evaluation of Retrieval Augmented Generation"
+      autores: ["Es et al."]
+      año: 2023
+      url: https://arxiv.org/abs/2309.15217
+      funcion: [evaluacion-rag, metricas-retrieval]
+      uso: [evaluacion, lector]
+      dominio: [evaluacion, rag]
+      verificado: pendiente
+      capitulos_relacionados: [26, 27, 28]
+
+    - id: ref-prompt-injection
+      tipo: paper
+      titulo: "Prompt Injection Attacks and Defenses in LLM-Integrated Applications"
+      autores: ["Liu et al."]
+      año: 2023
+      url: https://arxiv.org/abs/2310.12815
+      funcion: [seguridad, prompt-injection]
+      uso: [evaluacion, lector]
+      dominio: [seguridad]
+      verificado: pendiente
+      capitulos_relacionados: [32]
+
+  documentacion:
+    - id: ref-dvc-docs
+      tipo: documentacion
+      titulo: "DVC Documentation — Data Version Control"
+      organizacion: "Iterative"
+      url: https://dvc.org/doc
+      funcion: [versionado-artefactos, mlops]
+      uso: [evaluacion, lector]
+      dominio: [artefactos, versionado, mlops]
+      verificado: pendiente
+      capitulos_relacionados: [23, 29]
+
+    - id: ref-mlflow-docs
+      tipo: documentacion
+      titulo: "MLflow Documentation"
+      organizacion: "MLflow"
+      url: https://mlflow.org/docs/latest/index.html
+      funcion: [tracking-experimentos, gestion-modelos]
+      uso: [evaluacion, lector]
+      dominio: [artefactos, experimentos, mlops]
+      verificado: pendiente
+      capitulos_relacionados: [23, 29, 30]
+
+  blogs:
+    - id: ref-hamel-evaluations
+      tipo: blog
+      titulo: "Your AI Product Needs Evals"
+      autores: ["Hamel Husain"]
+      año: 2023
+      url: https://hamel.dev/blog/posts/evals/
+      funcion: [evaluacion-practica, metodologia]
+      uso: [evaluacion, lector]
+      dominio: [evaluacion]
+      verificado: pendiente
+      capitulos_relacionados: [26, 27]
+
+    - id: ref-eugene-yan-rag
+      tipo: blog
+      titulo: "Patterns for Building LLM-based Systems and Products"
+      autores: ["Eugene Yan"]
+      año: 2023
+      url: https://eugeneyan.com/writing/llm-patterns/
+      funcion: [patrones-sistemas, referencia-ingenieria]
+      uso: [evaluacion, lector]
+      dominio: [arquitectura, ingenieria, patrones]
+      verificado: pendiente
+      capitulos_relacionados: [19, 22, 28]
+
+# ------------------------------------------------------------
+# SECCIÓN 4 — PLATFORM AND OPERATIONS
+# ------------------------------------------------------------
+seccion_4_platform:
+
+  libros:
+    - id: ref-implementing-mlops
+      tipo: libro
+      titulo: "Implementing MLOps in the Enterprise"
+      autores: ["Yaron Haviv", "Noah Gift"]
+      año: 2023
+      editorial: "O'Reilly Media"
+      url: https://www.oreilly.com/library/view/implementing-mlops-in/9781098136574/
+      funcion: [mlops-enterprise, operaciones]
+      uso: [evaluacion, lector]
+      dominio: [mlops, plataforma, operaciones]
+      verificado: pendiente
+      capitulos_relacionados: [33, 34, 36, 38]
+
+  documentacion:
+    - id: ref-opentelemetry-docs
+      tipo: documentacion
+      titulo: "OpenTelemetry Documentation"
+      organizacion: "OpenTelemetry"
+      url: https://opentelemetry.io/docs/
+      funcion: [observabilidad, trazabilidad]
+      uso: [evaluacion, lector]
+      dominio: [observabilidad, plataforma]
+      verificado: pendiente
+      capitulos_relacionados: [34, 35]
+
+    - id: ref-langfuse-docs
+      tipo: documentacion
+      titulo: "Langfuse Documentation"
+      organizacion: "Langfuse"
+      url: https://langfuse.com/docs
+      funcion: [observabilidad-llm, tracing-llm]
+      uso: [evaluacion, lector]
+      dominio: [observabilidad, plataforma]
+      verificado: pendiente
+      nota: post-cutoff — verificar versión actual
+      capitulos_relacionados: [34, 35, 36]
+
+  blogs:
+    - id: ref-linkedin-ai-platform
+      tipo: blog
+      titulo: "LinkedIn's journey to building an AI platform"
+      autores: ["LinkedIn Engineering"]
+      url: https://engineering.linkedin.com/blog/topic/ai
+      funcion: [referencia-escala, plataforma-enterprise]
+      uso: [evaluacion]
+      dominio: [plataforma, escala, enterprise]
+      verificado: pendiente
+      capitulos_relacionados: [36, 39, 40]
+
+    - id: ref-uber-michelangelo
+      tipo: blog
+      titulo: "Meet Michelangelo: Uber's Machine Learning Platform"
+      autores: ["Uber Engineering"]
+      año: 2017
+      url: https://www.uber.com/en-US/blog/michelangelo-machine-learning-platform/
+      funcion: [referencia-plataforma, escala-enterprise]
+      uso: [evaluacion, lector]
+      dominio: [plataforma, mlops, enterprise]
+      verificado: pendiente
+      capitulos_relacionados: [36, 40]
+
+# ------------------------------------------------------------
+# SECCIÓN 5 — INFRASTRUCTURE
+# ------------------------------------------------------------
+seccion_5_infrastructure:
+
+  papers:
+    - id: ref-efficient-transformers
+      tipo: paper
+      titulo: "Efficient Transformers: A Survey"
+      autores: ["Tay et al."]
+      año: 2022
+      url: https://arxiv.org/abs/2009.06732
+      funcion: [inferencia-eficiente, optimizacion-modelos]
+      uso: [evaluacion]
+      dominio: [infraestructura, inferencia]
+      verificado: pendiente
+      capitulos_relacionados: [45, 46]
+
+    - id: ref-hnsw-paper
+      tipo: paper
+      titulo: "Efficient and Robust Approximate Nearest Neighbor Search Using HNSW"
+      autores: ["Malkov", "Yashunin"]
+      año: 2020
+      venue: "IEEE TPAMI"
+      url: https://arxiv.org/abs/1603.09320
+      funcion: [fundacional-vector-search, algoritmos-indexado]
+      uso: [evaluacion, lector]
+      dominio: [infraestructura, vector-database, indexado]
+      verificado: pendiente
+      capitulos_relacionados: [47]
+
+    - id: ref-ann-benchmarks
+      tipo: recurso
+      titulo: "ANN Benchmarks"
+      url: https://ann-benchmarks.com
+      funcion: [benchmarks-vector-search, comparativa-algoritmos]
+      uso: [evaluacion, lector]
+      dominio: [infraestructura, vector-database]
+      verificado: pendiente
+      capitulos_relacionados: [47]
+
+  documentacion:
+    - id: ref-vllm-docs
+      tipo: documentacion
+      titulo: "vLLM Documentation"
+      organizacion: "vLLM"
+      url: https://docs.vllm.ai
+      funcion: [serving-inferencia, optimizacion-gpu]
+      uso: [evaluacion, lector]
+      dominio: [infraestructura, inferencia, serving]
+      verificado: pendiente
+      nota: post-cutoff — proyecto en evolución rápida
+      capitulos_relacionados: [45, 46, 52]
+
+    - id: ref-pgvector-docs
+      tipo: documentacion
+      titulo: "pgvector Documentation"
+      organizacion: "pgvector"
+      url: https://github.com/pgvector/pgvector
+      funcion: [vector-database-postgres, implementacion]
+      uso: [evaluacion, lector]
+      dominio: [infraestructura, vector-database]
+      verificado: pendiente
+      capitulos_relacionados: [47]
+
+    - id: ref-qdrant-docs
+      tipo: documentacion
+      titulo: "Qdrant Documentation"
+      organizacion: "Qdrant"
+      url: https://qdrant.tech/documentation/
+      funcion: [vector-database, operacion-escala]
+      uso: [evaluacion, lector]
+      dominio: [infraestructura, vector-database]
+      verificado: pendiente
+      capitulos_relacionados: [47, 50]
+
+  blogs:
+    - id: ref-modal-inference
+      tipo: blog
+      titulo: "How we serve 1M+ requests per day with Modal"
+      autores: ["Modal Labs"]
+      url: https://modal.com/blog
+      funcion: [inferencia-escala, coste-inferencia]
+      uso: [evaluacion]
+      dominio: [infraestructura, inferencia, coste]
+      verificado: pendiente
+      capitulos_relacionados: [45, 46, 51, 52]
+
+# ------------------------------------------------------------
+# SECCIÓN 6 — ENTERPRISE PATTERNS
+# ------------------------------------------------------------
+seccion_6_enterprise:
+
+  libros:
+    - id: ref-accelerate-book
+      tipo: libro
+      titulo: "Accelerate: The Science of Lean Software and DevOps"
+      autores: ["Forsgren", "Humble", "Kim"]
+      año: 2018
+      editorial: "IT Revolution Press"
+      url: https://itrevolution.com/product/accelerate/
+      funcion: [referencia-ingenieria-organizacional, metricas-entrega]
+      uso: [evaluacion, lector]
+      dominio: [enterprise, organizacion, sdlc]
+      verificado: pendiente
+      nota: >
+        Referencia para el contexto organizacional en el que
+        los patrones de fallo emergen. Útil para Section 6.
+
+    - id: ref-team-topologies
+      tipo: libro
+      titulo: "Team Topologies"
+      autores: ["Skelton", "Pais"]
+      año: 2019
+      editorial: "IT Revolution Press"
+      url: https://teamtopologies.com/book
+      funcion: [organizacion-equipos, friccion-organizacional]
+      uso: [evaluacion, lector]
+      dominio: [enterprise, organizacion, equipos]
+      verificado: pendiente
+      nota: >
+        Relevante para capítulos sobre stakeholder management
+        y fricción organizacional en proyectos AI.
+
+  blogs:
+    - id: ref-martinfowler-llm-patterns
+      tipo: blog
+      titulo: "Patterns for LLM-based applications"
+      autores: ["Martin Fowler"]
+      url: https://martinfowler.com/articles/patterns-of-distributed-systems/
+      funcion: [patrones-enterprise, arquitectura-empresarial]
+      uso: [evaluacion]
+      dominio: [enterprise, patrones, arquitectura]
+      verificado: pendiente
+      capitulos_relacionados: [54, 55, 57, 58]
+
+    - id: ref-stripe-ml-production
+      tipo: blog
+      titulo: "Learning to operate ML models in production"
+      autores: ["Stripe Engineering"]
+      url: https://stripe.com/blog/engineering
+      funcion: [ml-produccion-enterprise, patrones-fallo]
+      uso: [evaluacion]
+      dominio: [enterprise, produccion, patrones-fallo]
+      verificado: pendiente
+      capitulos_relacionados: [54, 55, 62]
+
+# ------------------------------------------------------------
+# SECCIÓN 7 — REFERENCE ARCHITECTURES AND CASE STUDIES
+# ------------------------------------------------------------
+seccion_7_reference:
+
+  blogs:
+    - id: ref-notion-ai-architecture
+      tipo: blog
+      titulo: "How Notion's AI features are built"
+      autores: ["Notion Engineering"]
+      url: https://www.notion.so/blog/building-notion-ai
+      funcion: [referencia-arquitectura-real, knowledge-assistant]
+      uso: [evaluacion, lector]
+      dominio: [reference-architecture, knowledge-assistant]
+      verificado: pendiente
+      capitulos_relacionados: [63]
+
+    - id: ref-github-copilot-inside
+      tipo: blog
+      titulo: "Inside GitHub Copilot"
+      autores: ["GitHub Engineering"]
+      url: https://github.blog/category/engineering/
+      funcion: [referencia-coding-assistant, arquitectura-real]
+      uso: [evaluacion, lector]
+      dominio: [reference-architecture, coding-assistant]
+      verificado: pendiente
+      capitulos_relacionados: [65]
+
+    - id: ref-google-rag-enterprise
+      tipo: blog
+      titulo: "Enterprise RAG patterns"
+      autores: ["Google Cloud"]
+      url: https://cloud.google.com/blog/products/ai-machine-learning
+      funcion: [rag-enterprise, patrones-escala]
+      uso: [evaluacion]
+      dominio: [reference-architecture, rag, enterprise]
+      verificado: pendiente
+      nota: post-cutoff — verificar artículos recientes
+      capitulos_relacionados: [63, 64]

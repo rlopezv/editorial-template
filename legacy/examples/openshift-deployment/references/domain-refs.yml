@@ -1,0 +1,258 @@
+# ============================================================
+# DOMAIN REFERENCES
+# OpenShift Deployment — Instancia Operacional
+# ============================================================
+# Corpus de referencias del dominio organizado por sección.
+# Generado en Phase 0 — Inception como hipótesis inicial.
+# Enriquecer durante Phase 2 y Phase 4.
+#
+# Tres niveles de uso:
+#   - evaluacion: calibrar profundidad y cobertura de capítulos
+#   - lector: aparecer en referencias del capítulo publicado
+#   - ambos: los dos usos anteriores
+#
+# Estado de verificación:
+#   - verificado: URL confirmada y recurso accesible
+#   - pendiente: identificado pero sin verificar
+#   - post-cutoff: puede existir versión más reciente
+#
+# IMPORTANTE: Vincular siempre a la versión de OpenShift
+# del entorno objetivo cuando la documentación sea versionada.
+# ============================================================
+
+meta:
+  version: v0
+  generado_en: phase-0-inception
+  fecha: ""
+  version_openshift_objetivo: ""
+  cobertura: por-seccion
+  tipos_incluidos:
+    - documentacion-oficial-red-hat
+    - documentacion-upstream-kubernetes
+    - libros-tecnicos-referencia
+    - red-hat-engineering-blog
+  nota: >
+    Todas las URLs requieren verificación antes de incluir
+    en capítulos publicados. Ver ai-usage-policy.yml para
+    política de verificación de referencias.
+    La documentación de OpenShift cambia con cada versión —
+    verificar que la URL apunta a la versión correcta.
+
+# ------------------------------------------------------------
+# REFERENCIAS CANÓNICAS DEL DOMINIO
+# Aplican al libro completo — no a una sección específica
+# ------------------------------------------------------------
+canonicas:
+  - id: openshift-docs-oficial
+    tipo: documentacion-oficial
+    titulo: "OpenShift Container Platform Documentation"
+    autores: ["Red Hat"]
+    url: "https://docs.openshift.com/container-platform/"
+    estado_url: pendiente
+    uso: ambos
+    nota: >
+      Documentación oficial versionada. Siempre referenciar
+      la versión específica del entorno objetivo.
+
+  - id: kubernetes-docs-oficial
+    tipo: documentacion-oficial
+    titulo: "Kubernetes Documentation"
+    autores: ["Kubernetes project"]
+    url: "https://kubernetes.io/docs/"
+    estado_url: pendiente
+    uso: evaluacion
+    nota: >
+      Referencia de comportamiento upstream. Útil para
+      comparar con comportamiento específico de OpenShift.
+
+  - id: kubernetes-in-action
+    tipo: libro-tecnico
+    titulo: "Kubernetes in Action, 2nd Edition"
+    autores: ["Marko Lukša"]
+    año: "2024"
+    url: ""
+    estado_url: pendiente
+    uso: evaluacion
+    nota: >
+      Referencia para calibrar nivel de explicación de conceptos
+      de Kubernetes. El libro OpenShift asume que el lector
+      no tiene este conocimiento — este libro es la calibración
+      de partida.
+
+  - id: production-kubernetes
+    tipo: libro-tecnico
+    titulo: "Production Kubernetes"
+    autores: ["Josh Rosso", "Rich Lander", "Alex Brand", "John Harris"]
+    año: "2021"
+    url: ""
+    estado_url: pendiente
+    uso: evaluacion
+    nota: >
+      Referencia para conceptos de operación de Kubernetes en producción.
+      Algunas diferencias con OpenShift — usar como calibración conceptual.
+
+  - id: kubernetes-patterns
+    tipo: libro-tecnico
+    titulo: "Kubernetes Patterns, 2nd Edition"
+    autores: ["Bilgin Ibryam", "Roland Huß"]
+    año: "2023"
+    url: ""
+    estado_url: pendiente
+    uso: evaluacion
+    nota: >
+      Referencia para patrones de workload. Los capítulos de
+      concept-introduction sobre tipos de workload pueden
+      calibrarse contra los patrones de este libro.
+
+# ------------------------------------------------------------
+# REFERENCIAS POR SECCIÓN
+# ------------------------------------------------------------
+secciones:
+
+  - seccion: fundamentos-openshift
+    descripcion: >
+      Conceptos base de OpenShift para el público objetivo —
+      pods, deployments, services, routes, namespaces.
+    referencias:
+      - id: openshift-getting-started
+        tipo: documentacion-oficial
+        titulo: "Getting started with OpenShift Container Platform"
+        autores: ["Red Hat"]
+        url: "https://docs.openshift.com/container-platform/latest/getting_started/"
+        estado_url: pendiente
+        uso: evaluacion
+      - id: openshift-architecture-overview
+        tipo: documentacion-oficial
+        titulo: "OpenShift Container Platform architecture"
+        autores: ["Red Hat"]
+        url: "https://docs.openshift.com/container-platform/latest/architecture/"
+        estado_url: pendiente
+        uso: evaluacion
+
+  - seccion: seguridad-operacional
+    descripcion: >
+      Modelo de seguridad de OpenShift desde perspectiva de
+      despliegue de aplicaciones — SCC, RBAC, network policies.
+    referencias:
+      - id: openshift-scc-docs
+        tipo: documentacion-oficial
+        titulo: "Managing security context constraints"
+        autores: ["Red Hat"]
+        url: "https://docs.openshift.com/container-platform/latest/authentication/managing-security-context-constraints.html"
+        estado_url: pendiente
+        uso: ambos
+        nota: >
+          Referencia principal para el capítulo de SCC.
+          Es la fuente de la documentación — el libro debe ir
+          más allá explicando el porqué y los patrones de fallo.
+      - id: openshift-rbac-docs
+        tipo: documentacion-oficial
+        titulo: "Using RBAC to define and apply permissions"
+        autores: ["Red Hat"]
+        url: "https://docs.openshift.com/container-platform/latest/authentication/using-rbac.html"
+        estado_url: pendiente
+        uso: ambos
+      - id: kubernetes-network-policies
+        tipo: documentacion-upstream
+        titulo: "Network Policies"
+        autores: ["Kubernetes project"]
+        url: "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+        estado_url: pendiente
+        uso: evaluacion
+
+  - seccion: pipelines-cicd
+    descripcion: >
+      OpenShift Pipelines con Tekton — conceptos, operación
+      y gestión del ciclo de vida de pipelines.
+    referencias:
+      - id: openshift-pipelines-docs
+        tipo: documentacion-oficial
+        titulo: "OpenShift Pipelines"
+        autores: ["Red Hat"]
+        url: "https://docs.openshift.com/pipelines/latest/"
+        estado_url: pendiente
+        uso: ambos
+      - id: tekton-docs
+        tipo: documentacion-upstream
+        titulo: "Tekton Documentation"
+        autores: ["Tekton project"]
+        url: "https://tekton.dev/docs/"
+        estado_url: pendiente
+        uso: evaluacion
+      - id: tekton-catalog
+        tipo: documentacion-upstream
+        titulo: "Tekton Hub"
+        autores: ["Tekton project"]
+        url: "https://hub.tekton.dev/"
+        estado_url: pendiente
+        uso: lector
+        nota: >
+          Catálogo de Tasks y Pipelines reutilizables.
+          Útil como referencia para capítulos de labs.
+
+  - seccion: observabilidad
+    descripcion: >
+      Observabilidad de aplicaciones en OpenShift —
+      métricas, logs, alertas y trazas.
+    referencias:
+      - id: openshift-monitoring-docs
+        tipo: documentacion-oficial
+        titulo: "Monitoring overview"
+        autores: ["Red Hat"]
+        url: "https://docs.openshift.com/container-platform/latest/observability/monitoring/monitoring-overview.html"
+        estado_url: pendiente
+        uso: ambos
+      - id: openshift-logging-docs
+        tipo: documentacion-oficial
+        titulo: "Logging"
+        autores: ["Red Hat"]
+        url: "https://docs.openshift.com/container-platform/latest/observability/logging/"
+        estado_url: pendiente
+        uso: ambos
+      - id: prometheus-docs
+        tipo: documentacion-upstream
+        titulo: "Prometheus Documentation"
+        autores: ["Prometheus project"]
+        url: "https://prometheus.io/docs/"
+        estado_url: pendiente
+        uso: evaluacion
+
+  - seccion: escalado-y-capacidad
+    descripcion: >
+      Autoscaling de aplicaciones y gestión de capacidad
+      desde perspectiva de equipo de aplicación.
+    referencias:
+      - id: openshift-hpa-docs
+        tipo: documentacion-oficial
+        titulo: "Automatically scaling pods with the horizontal pod autoscaler"
+        autores: ["Red Hat"]
+        url: "https://docs.openshift.com/container-platform/latest/nodes/pods/nodes-pods-autoscaling.html"
+        estado_url: pendiente
+        uso: ambos
+      - id: kubernetes-hpa-docs
+        tipo: documentacion-upstream
+        titulo: "Horizontal Pod Autoscaling"
+        autores: ["Kubernetes project"]
+        url: "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/"
+        estado_url: pendiente
+        uso: evaluacion
+
+  - seccion: gitops
+    descripcion: >
+      GitOps sobre OpenShift — ArgoCD y gestión declarativa
+      de aplicaciones.
+    referencias:
+      - id: openshift-gitops-docs
+        tipo: documentacion-oficial
+        titulo: "Red Hat OpenShift GitOps"
+        autores: ["Red Hat"]
+        url: "https://docs.openshift.com/gitops/latest/"
+        estado_url: pendiente
+        uso: ambos
+      - id: argocd-docs
+        tipo: documentacion-upstream
+        titulo: "Argo CD Documentation"
+        autores: ["Argo project"]
+        url: "https://argo-cd.readthedocs.io/"
+        estado_url: pendiente
+        uso: evaluacion

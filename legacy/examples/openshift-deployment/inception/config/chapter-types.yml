@@ -1,0 +1,395 @@
+# ============================================================
+# CHAPTER TYPES
+# Taxonomía de tipos de capítulo — OpenShift Deployment
+# ============================================================
+# Cada tipo define:
+#   - propósito y cuándo usarlo
+#   - secciones obligatorias y opcionales
+#   - criterios de calidad específicos
+#   - longitud orientativa
+# ============================================================
+
+tipos:
+
+  # ----------------------------------------------------------
+  - id: concept-introduction
+    nombre: "Concept Introduction"
+    proposito: >
+      Presenta un concepto operacional nuevo desde cero.
+      El lector llega sin el concepto y sale con él
+      internalizado y conectado a su conocimiento previo.
+      El énfasis está en las transferencias desde Linux,
+      Docker y entornos clásicos — y en nombrar explícitamente
+      dónde esas analogías fallan en OpenShift.
+    cuando_usar:
+      - concepto de Kubernetes u OpenShift genuinamente nuevo
+        para el público objetivo
+      - concepto que el lector cree entender desde Docker o VMs
+        pero que funciona diferente en OpenShift
+      - concepto que es prerequisito para entender comportamientos
+        operacionales posteriores
+    secciones:
+      obligatorias:
+        - id: prerequisitos
+          descripcion: >
+            Qué debe saber el lector antes de este capítulo.
+            Explícito — si el lector viene de VMs, decirlo.
+            Si necesita entender pods antes de entender deployments,
+            decirlo.
+        - id: desde-lo-que-ya-sabes
+          descripcion: >
+            Conexión con el conocimiento previo del público
+            objetivo. Qué analogía desde Linux, Docker, Jenkins
+            o entornos clásicos ayuda a construir el modelo mental.
+            Y dónde esa analogía falla — con precisión, no vaguedad.
+            Ejemplo: "Un pod no es un contenedor Docker aunque
+            contenga uno. La diferencia importa cuando..."
+        - id: el-concepto-en-openshift
+          descripcion: >
+            Definición precisa y comportamiento del concepto
+            en OpenShift. Con ejemplos de YAML concretos
+            y anotados. Sin jerga innecesaria. El YAML no
+            es decoración — es el objeto del conocimiento.
+        - id: implicaciones-operacionales
+          descripcion: >
+            Qué comportamientos operacionales produce este
+            concepto. Qué ocurre cuando falla, cuando escala,
+            cuando se actualiza. Qué señales observables
+            genera en los logs y eventos del clúster.
+        - id: conexiones
+          descripcion: >
+            Cómo conecta con conceptos anteriores del path
+            y qué conceptos posteriores dependen de este.
+      opcionales:
+        - id: diferencias-openshift-vs-kubernetes
+          descripcion: >
+            Si hay diferencias relevantes entre OpenShift y
+            Kubernetes vanilla para este concepto — restricciones
+            adicionales, objetos propios de OpenShift, cambios
+            de comportamiento por defecto.
+        - id: misconceptions
+          descripcion: >
+            Malentendidos comunes — especialmente los que vienen
+            de la transferencia desde Docker, VMs o entornos
+            clásicos de operaciones.
+    criterios_calidad:
+      - la analogía con conocimiento previo es explícita y sus límites están nombrados
+      - el YAML de ejemplo es funcional y está anotado — no es pseudocódigo
+      - las implicaciones operacionales están ancladas en lo observable
+      - el lector sabe qué ocurre cuando este concepto falla
+      - no asume acceso al plano de control o conocimiento de administración del clúster
+    longitud_orientativa: "1500-2500 palabras"
+
+  # ----------------------------------------------------------
+  - id: worked-example
+    nombre: "Worked Example"
+    proposito: >
+      Aplica uno o varios conceptos a un escenario operacional
+      concreto, mostrando el proceso de decisión completo —
+      no solo la configuración final. El lector ve por qué
+      se eligió esa configuración, qué alternativas se descartaron
+      y cuáles fueron las restricciones que determinaron la decisión.
+    cuando_usar:
+      - cuando el concepto tiene múltiples opciones de configuración
+        y la elección depende del contexto
+      - cuando la secuencia de decisiones importa tanto como el resultado
+      - cuando las restricciones empresariales — seguridad, tenancy,
+        acceso limitado al clúster — cambian la decisión
+    secciones:
+      obligatorias:
+        - id: escenario
+          descripcion: >
+            La aplicación, el entorno, las restricciones.
+            Suficientemente específico para ser reconocible —
+            tipo de carga, equipo responsable, políticas
+            de seguridad del clúster, restricciones de acceso.
+        - id: proceso-de-decision
+          descripcion: >
+            Cómo se llegó a la configuración elegida paso
+            a paso. Qué se observó, qué se descartó y por qué.
+            Incluye los errores intermedios si son instructivos.
+        - id: configuracion-resultante
+          descripcion: >
+            Los manifests YAML resultantes, anotados.
+            Con explicación de cada campo relevante —
+            no solo el valor sino por qué ese valor.
+        - id: validacion
+          descripcion: >
+            Cómo verificar que la configuración funciona
+            como se espera. Qué comandos ejecutar, qué
+            observar en los eventos y logs, qué métricas
+            confirman el comportamiento correcto.
+        - id: que-podria-fallar
+          descripcion: >
+            Los modos de fallo más probables de esta
+            configuración y cómo detectarlos. Anclado
+            en lo observable — no en teoría.
+      opcionales:
+        - id: alternativas
+          descripcion: >
+            Configuraciones alternativas y cuándo serían
+            la elección correcta en lugar de la presentada.
+            Con los trade-offs explícitos.
+    criterios_calidad:
+      - el escenario tiene restricciones reales — no es un entorno limpio ideal
+      - el proceso de decisión es visible — no solo la configuración final
+      - los manifests YAML son funcionales y están anotados
+      - la sección de validación usa comandos reales
+      - los modos de fallo son concretos y observables
+    longitud_orientativa: "2000-3500 palabras"
+
+  # ----------------------------------------------------------
+  - id: practice-problem
+    nombre: "Practice Problem"
+    proposito: >
+      El lector aplica por sí mismo el conocimiento adquirido
+      a una situación operacional concreta. No es un tutorial
+      con pasos — es un escenario con información incompleta
+      donde el lector debe diagnosticar, decidir o configurar.
+    cuando_usar:
+      - después de concept-introduction o worked-example
+      - cuando el concepto requiere aplicación activa para consolidar
+      - cuando el diagnóstico es tan importante como la solución
+    secciones:
+      obligatorias:
+        - id: situacion
+          descripcion: >
+            La aplicación, el síntoma o el requerimiento.
+            Con la información disponible en un escenario
+            real — no más de lo que tendría el lector en
+            producción. Puede incluir outputs de comandos,
+            fragmentos de logs, o manifests con un problema.
+        - id: preguntas
+          descripcion: >
+            Las preguntas que el lector debe responder.
+            Entre 2 y 5. Pueden ser de diagnóstico
+            ("¿qué está fallando y por qué?"), de decisión
+            ("¿qué configuración elegirías y por qué?")
+            o de predicción ("¿qué ocurrirá si...?").
+        - id: guia-de-respuesta
+          descripcion: >
+            No la respuesta única — sino los criterios
+            que debe cumplir una buena respuesta. Qué
+            indica comprensión real vs comprensión superficial.
+            En diagnóstico: qué debe haber identificado el lector.
+            En decisión: qué trade-offs debe haber considerado.
+      opcionales:
+        - id: pistas
+          descripcion: >
+            Para el lector que se bloquea. Orienta el
+            razonamiento sin revelar la respuesta.
+            Ej: "Revisa los eventos del pod antes de
+            mirar los logs de la aplicación."
+    criterios_calidad:
+      - la situación tiene la ambigüedad real de un entorno de producción
+      - las preguntas requieren razonamiento — no memorización
+      - la guía distingue comprensión operacional real de superficial
+    longitud_orientativa: "800-1500 palabras"
+
+  # ----------------------------------------------------------
+  - id: synthesis
+    nombre: "Synthesis"
+    proposito: >
+      Conecta conceptos de capítulos anteriores en un modelo
+      operacional integrado. El lector ve cómo las piezas
+      encajan para producir comportamientos del sistema —
+      y por qué entender cada pieza por separado es insuficiente
+      para operar el conjunto.
+    cuando_usar:
+      - al final de una sección del path
+      - cuando varios conceptos independientes forman un sistema
+        de comportamientos operacionales
+      - antes de introducir complejidad adicional o un nuevo dominio
+    secciones:
+      obligatorias:
+        - id: mapa-de-conceptos
+          descripcion: >
+            Cómo los conceptos de la sección se relacionan
+            para producir comportamientos observables.
+            No una lista — una arquitectura de relaciones.
+            Ej: cómo la combinación de resource limits,
+            HPA y node affinity produce comportamientos
+            de scheduling no obvios desde cada concepto por separado.
+        - id: comportamientos-emergentes
+          descripcion: >
+            Comportamientos del sistema que solo son visibles
+            cuando los conceptos actúan en conjunto. Lo que
+            no era predecible desde los conceptos individuales.
+        - id: implicaciones-para-operaciones
+          descripcion: >
+            Qué significa este modelo integrado para las
+            decisiones operacionales diarias del lector.
+            Qué antes no podía diagnosticar y ahora puede.
+        - id: preparacion-para-lo-siguiente
+          descripcion: >
+            Qué preguntas quedan abiertas que la siguiente
+            sección del path va a responder.
+      opcionales:
+        - id: misconceptions-combinados
+          descripcion: >
+            Malentendidos que emergen cuando los conceptos
+            se combinan — distintos de los de cada concepto
+            por separado.
+    criterios_calidad:
+      - los comportamientos emergentes son operacionalmente relevantes
+      - el lector sabe qué puede diagnosticar ahora que no podía antes
+      - la preparación para lo siguiente crea tensión productiva
+    longitud_orientativa: "1000-2000 palabras"
+
+  # ----------------------------------------------------------
+  - id: field-pattern
+    nombre: "Field Pattern"
+    proposito: >
+      Documenta un patrón operacional que solo existe en
+      entornos empresariales reales — situaciones donde la
+      documentación oficial dice una cosa y la operación
+      diaria revela otra. Fallos recurrentes, antipatrones
+      de configuración con causa raíz no obvia, comportamientos
+      del clúster que dependen de decisiones de configuración
+      que tomó otro equipo.
+    cuando_usar:
+      - cuando el patrón no está documentado en la documentación oficial
+      - cuando la brecha entre el comportamiento esperado y el real
+        es significativa y recurrente
+      - cuando el contexto organizacional — acceso limitado, políticas
+        heredadas, múltiples equipos — es parte del patrón
+      - cuando el diagnóstico requiere conocimiento que no está en
+        ningún runbook estándar
+    secciones:
+      obligatorias:
+        - id: el-patron
+          descripcion: >
+            El patrón nombrado de forma memorable y su
+            descripción precisa. Qué situación lo activa,
+            qué forma toma, en qué entornos aparece.
+            Ej: "El SCC que silencia tu contenedor",
+            "La imagen que funciona en local y falla en el clúster".
+        - id: por-que-ocurre
+          descripcion: >
+            La causa raíz real. No el síntoma — la cadena
+            causal completa. Por qué la configuración del
+            clúster, combinada con la configuración de la
+            aplicación, produce este comportamiento.
+        - id: como-se-manifiesta
+          descripcion: >
+            Las señales concretas y observables que el lector
+            verá en los eventos, logs y salida de comandos.
+            Diferenciado por perfil cuando el DevOps engineer
+            ve algo distinto del operations engineer.
+        - id: como-diagnosticarlo
+          descripcion: >
+            La secuencia de diagnóstico concreta. Qué comandos
+            ejecutar, en qué orden, qué buscar en cada output.
+            Con los outputs reales o realistas de los comandos clave.
+        - id: como-resolverlo
+          descripcion: >
+            La resolución posible en un entorno empresarial
+            con restricciones — no la solución ideal con acceso
+            total al clúster. Incluyendo escalados necesarios
+            al equipo de plataforma o administración cuando
+            la resolución está fuera del alcance del lector.
+        - id: como-prevenirlo
+          descripcion: >
+            Qué configuraciones o prácticas reducen la probabilidad
+            de este patrón. Qué añadir a los pipelines o
+            al proceso de validación de manifests.
+      opcionales:
+        - id: variantes
+          descripcion: >
+            Variantes del patrón en distintos contextos —
+            versiones de OpenShift, tipos de workload,
+            configuraciones de clúster diferentes.
+        - id: patrones-relacionados
+          descripcion: >
+            Otros field patterns que coexisten con este
+            o que lo preceden o siguen en la secuencia
+            de un incidente.
+    criterios_calidad:
+      - el patrón no está en la documentación oficial de Red Hat
+      - la causa raíz es la raíz real — no una simplificación
+      - el diagnóstico usa comandos reales con outputs reales o realistas
+      - la resolución respeta las restricciones de acceso del público objetivo
+      - el autor puede responder por el contenido desde experiencia propia
+    longitud_orientativa: "2000-4000 palabras"
+    nota_editorial: >
+      Este tipo requiere conocimiento validable alto del autor.
+      No generar con IA sin base operacional real.
+      La IA puede estructurar — no puede originar el patrón.
+
+  # ----------------------------------------------------------
+  - id: lab
+    nombre: "Hands-On Lab"
+    proposito: >
+      Convierte comprensión en capacidad operacional. El lector
+      despliega, configura, rompe y repara una aplicación
+      en un escenario empresarial con restricciones reales.
+      No es un tutorial paso a paso — es una situación completa
+      donde el lector toma decisiones y observa sus consecuencias.
+    cuando_usar:
+      - después de una sección del path suficientemente estable
+      - cuando el concepto requiere práctica con el clúster real
+        para consolidar
+      - cuando los modos de fallo solo son visibles al operar
+    secciones:
+      obligatorias:
+        - id: contexto-del-escenario
+          descripcion: >
+            La organización, el equipo, la aplicación,
+            las restricciones del entorno. Qué acceso tiene
+            el lector. Qué políticas de seguridad están
+            activas. Quién gestiona el clúster.
+            Suficientemente específico para ser real.
+        - id: estado-inicial
+          descripcion: >
+            Qué existe en el clúster al comenzar el lab.
+            Manifests de partida. Qué funciona, qué no,
+            qué está configurado incorrectamente si el lab
+            es de troubleshooting.
+        - id: objetivo
+          descripcion: >
+            Lo que el lector debe conseguir al final.
+            Expresado como resultado observable — no como
+            lista de pasos. Ej: "La aplicación debe responder
+            en menos de 200ms bajo carga sostenida con
+            al menos 3 réplicas activas y sin alertas activas."
+        - id: restricciones
+          descripcion: >
+            Las restricciones reales del escenario —
+            qué no puede cambiar el lector, qué accesos
+            no tiene, qué políticas del clúster están fuera
+            de su control. Sin restricciones realistas no
+            hay decisión real.
+        - id: criterios-de-exito
+          descripcion: >
+            Cómo verifica el lector que ha conseguido
+            el objetivo. Comandos concretos y outputs
+            esperados. No una única solución — criterios
+            que cualquier solución válida debe cumplir.
+        - id: debriefing
+          descripcion: >
+            Análisis de las decisiones clave del lab —
+            las que el lector probablemente tomó diferente
+            y por qué ambas pueden ser válidas o no serlo.
+            Conexión explícita con los conceptos del path.
+      opcionales:
+        - id: variante-por-perfil
+          descripcion: >
+            Si el mismo escenario tiene foco distinto
+            según el perfil — el DevOps engineer configura
+            el pipeline mientras el operations engineer
+            valida los runbooks de respuesta a incidentes.
+        - id: extension
+          descripcion: >
+            Complejidad adicional sobre el mismo escenario
+            para el lector que quiere ir más lejos.
+    criterios_calidad:
+      - el escenario tiene restricciones operacionales reales
+      - el objetivo es un resultado observable — no una lista de pasos
+      - los criterios de éxito son verificables con comandos concretos
+      - el debriefing es honesto sobre trade-offs — no hay solución perfecta
+      - el lab está vinculado a capítulos específicos del path
+    longitud_orientativa: "2500-5000 palabras"
+    vinculacion:
+      capitulos_prerequisito: requerido
+      path_primario: requerido
+      variantes_por_perfil: opcional

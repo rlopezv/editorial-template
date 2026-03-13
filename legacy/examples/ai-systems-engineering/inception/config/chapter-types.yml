@@ -1,0 +1,346 @@
+# ============================================================
+# CHAPTER TYPES
+# Taxonomía de tipos de capítulo — Instancia Pedagógica
+# ============================================================
+# Cada tipo define:
+#   - propósito y cuándo usarlo
+#   - secciones obligatorias y opcionales
+#   - criterios de calidad específicos
+#   - longitud orientativa
+# ============================================================
+
+tipos:
+
+  # ----------------------------------------------------------
+  - id: concept-introduction
+    nombre: "Concept Introduction"
+    proposito: >
+      Presenta un concepto nuevo desde cero. El lector llega
+      sin el concepto y sale con él internalizado y conectado
+      a su conocimiento previo. Énfasis en transferencia desde
+      lo que el lector ya sabe — no explicación desde cero
+      sino explicación desde el punto de partida del lector.
+    cuando_usar:
+      - concepto genuinamente nuevo para el público objetivo
+      - concepto que el lector cree conocer pero en AI systems
+        funciona de forma distinta
+      - concepto que es prerequisito para capítulos posteriores
+    secciones:
+      obligatorias:
+        - id: prerequisitos
+          descripcion: >
+            Qué debe saber el lector antes de este capítulo.
+            Explícito y honesto — si el lector no tiene estos
+            conocimientos, este no es su punto de entrada.
+        - id: desde-lo-que-ya-sabes
+          descripcion: >
+            Conexión con el conocimiento previo del público
+            objetivo. Qué analogía o patrón conocido ayuda
+            a construir el modelo mental del nuevo concepto.
+            Y dónde esa analogía falla — límites explícitos.
+        - id: concepto-central
+          descripcion: >
+            Definición precisa y explicación del concepto.
+            Sin jerga innecesaria. Con ejemplos concretos
+            en contexto empresarial real.
+        - id: por-que-importa
+          descripcion: >
+            Qué decisiones de diseño o operación dependen
+            de entender este concepto correctamente. Anclado
+            en el rol del lector.
+        - id: conexiones
+          descripcion: >
+            Cómo conecta con conceptos anteriores del path
+            y qué conceptos posteriores dependen de este.
+      opcionales:
+        - id: misconceptions
+          descripcion: >
+            Malentendidos comunes sobre este concepto —
+            especialmente los que emergen del conocimiento
+            previo del público objetivo.
+        - id: variantes
+          descripcion: >
+            Variantes o casos especiales del concepto que
+            el lector encontrará en la práctica.
+    criterios_calidad:
+      - la conexión con conocimiento previo es explícita y precisa
+      - los límites de la analogía están declarados
+      - los ejemplos son reconocibles para el público objetivo
+      - el lector sabe qué decisiones puede tomar tras el capítulo
+      - no asume conocimiento no declarado en prerequisitos
+    longitud_orientativa: "1500-2500 palabras"
+
+  # ----------------------------------------------------------
+  - id: worked-example
+    nombre: "Worked Example"
+    proposito: >
+      Aplica uno o varios conceptos a un caso concreto,
+      mostrando el proceso de razonamiento completo —
+      no solo el resultado. El lector ve cómo se toman
+      las decisiones, no solo cuáles son las decisiones.
+    cuando_usar:
+      - después de uno o varios concept-introduction
+      - cuando el concepto tiene aplicación no obvia
+      - cuando los trade-offs solo son visibles en un caso concreto
+    secciones:
+      obligatorias:
+        - id: escenario
+          descripcion: >
+            Descripción del caso — contexto empresarial,
+            restricciones, actores. Suficientemente específico
+            para ser realista. Basado en patrones reales
+            aunque anonimizado.
+        - id: proceso-de-razonamiento
+          descripcion: >
+            Cómo se aplica el concepto al escenario paso
+            a paso. Incluye las dudas, las alternativas
+            consideradas, y por qué se descartan.
+        - id: decision-y-resultado
+          descripcion: >
+            La decisión tomada y sus consecuencias.
+            Qué funcionó, qué no, qué se haría diferente.
+        - id: generalizacion
+          descripcion: >
+            Qué aprendizajes del ejemplo son transferibles
+            a otros escenarios y cuáles son específicos
+            de este caso.
+      opcionales:
+        - id: alternativas
+          descripcion: >
+            Cómo habría sido distinto el resultado con
+            decisiones diferentes. Muestra los trade-offs
+            de forma concreta.
+    criterios_calidad:
+      - el escenario es reconocible para el público objetivo
+      - el proceso de razonamiento es visible — no solo el resultado
+      - los trade-offs son honestos — no hay solución perfecta
+      - la generalización es cuidadosa — no sobre-generaliza
+    longitud_orientativa: "2000-3500 palabras"
+
+  # ----------------------------------------------------------
+  - id: practice-problem
+    nombre: "Practice Problem"
+    proposito: >
+      El lector aplica por sí mismo el conocimiento adquirido.
+      A diferencia del lab — que es un ejercicio completo con
+      entorno — el practice problem es una situación de decisión
+      que el lector resuelve con el conocimiento del capítulo.
+    cuando_usar:
+      - después de concept-introduction o worked-example
+      - cuando el concepto requiere aplicación activa para consolidar
+      - como cierre de una sección antes de avanzar
+    secciones:
+      obligatorias:
+        - id: situacion
+          descripcion: >
+            Descripción de la situación que el lector
+            debe resolver. Con suficiente contexto para
+            que la decisión sea real — no trivial.
+        - id: preguntas
+          descripcion: >
+            Las preguntas específicas que el lector debe
+            responder. Entre 2 y 5 preguntas. Cada una
+            tiene criterios de respuesta correcta.
+        - id: guia-de-respuesta
+          descripcion: >
+            No la respuesta única — sino los criterios
+            que debe cumplir una buena respuesta. Qué
+            trade-offs debe considerar. Qué señales
+            indican comprensión real vs superficial.
+      opcionales:
+        - id: pistas
+          descripcion: >
+            Para el lector que se bloquea. No revela
+            la respuesta — orienta el razonamiento.
+        - id: discusion
+          descripcion: >
+            Análisis de respuestas comunes — correctas
+            e incorrectas — con explicación de por qué.
+    criterios_calidad:
+      - la situación es suficientemente compleja para ser real
+      - no hay una única respuesta correcta — hay criterios
+      - la guía de respuesta distingue comprensión real de superficial
+    longitud_orientativa: "800-1500 palabras"
+
+  # ----------------------------------------------------------
+  - id: synthesis
+    nombre: "Synthesis"
+    proposito: >
+      Conecta conceptos de capítulos anteriores en un modelo
+      integrado. El lector ve cómo las piezas encajan — y
+      por qué el orden en que las aprendió importa.
+      Cierra secciones del path antes de avanzar a la siguiente.
+    cuando_usar:
+      - al final de una sección del path
+      - cuando varios conceptos independientes forman un sistema
+      - antes de introducir complejidad adicional
+    secciones:
+      obligatorias:
+        - id: mapa-de-conceptos
+          descripcion: >
+            Representación visual o estructurada de cómo
+            los conceptos de la sección se relacionan.
+            No una lista — una arquitectura de relaciones.
+        - id: como-encajan
+          descripcion: >
+            Explicación de las relaciones entre conceptos.
+            Cómo una decisión en un concepto condiciona
+            las opciones en otro.
+        - id: patron-emergente
+          descripcion: >
+            Qué patrón o principio emerge de ver los
+            conceptos juntos que no era visible en cada
+            uno por separado.
+        - id: preparacion-para-lo-siguiente
+          descripcion: >
+            Qué preguntas quedan abiertas que la siguiente
+            sección del path va a responder.
+      opcionales:
+        - id: revision-de-misconceptions
+          descripcion: >
+            Malentendidos que emergen cuando los conceptos
+            se combinan — distintos de los de cada concepto
+            por separado.
+    criterios_calidad:
+      - el mapa de conceptos tiene estructura — no es una lista
+      - el patrón emergente no era obvio desde conceptos individuales
+      - la preparación para lo siguiente crea tensión productiva
+    longitud_orientativa: "1000-2000 palabras"
+
+  # ----------------------------------------------------------
+  - id: field-pattern
+    nombre: "Field Pattern"
+    proposito: >
+      Documenta conocimiento que solo existe en la práctica —
+      patrones de fallo, decisiones en contexto real con
+      restricciones organizacionales, lo que no está en
+      ningún paper ni documentación. Es el tipo de capítulo
+      más diferencial del libro — y el que más depende del
+      conocimiento tácito del autor.
+    cuando_usar:
+      - cuando el conocimiento no está disponible en literatura
+      - cuando la brecha entre teoría y práctica es significativa
+      - cuando el patrón de fallo es recurrente pero no documentado
+      - cuando las restricciones organizacionales cambian la decisión
+    secciones:
+      obligatorias:
+        - id: el-patron
+          descripcion: >
+            Descripción precisa del patrón — qué situación
+            lo activa, qué forma toma, en qué contextos
+            aparece. Nombrado de forma memorable.
+        - id: por-que-ocurre
+          descripcion: >
+            La causa raíz del patrón. No solo qué pasa
+            sino por qué pasa — qué decisiones previas
+            o qué restricciones organizacionales lo producen.
+        - id: como-se-manifiesta
+          descripcion: >
+            Las señales concretas que el lector puede
+            observar. Qué ve el solution architect,
+            qué ve el engineer, qué ve el operator.
+            Puede ser distinto para cada perfil.
+        - id: como-responder
+          descripcion: >
+            Qué hacer cuando el patrón aparece. Con
+            las restricciones reales — no la respuesta
+            ideal sino la respuesta posible en un proyecto
+            empresarial con presión de tiempo y stakeholders.
+        - id: como-prevenirlo
+          descripcion: >
+            Qué decisiones de diseño tempranas reducen
+            la probabilidad de este patrón. Qué señales
+            de alerta aparecen antes de que el patrón
+            se manifieste completamente.
+      opcionales:
+        - id: variantes
+          descripcion: >
+            Variantes del patrón en distintos contextos —
+            industrias, tamaños de organización, tipos
+            de sistema AI.
+        - id: patrones-relacionados
+          descripcion: >
+            Otros field patterns que coexisten con este
+            o que lo preceden o siguen.
+    criterios_calidad:
+      - el patrón no está disponible en literatura estándar
+      - la causa raíz es real — no una simplificación
+      - las restricciones organizacionales están presentes
+      - la respuesta es posible — no solo correcta en abstracto
+      - el autor puede responder por el contenido desde experiencia propia
+    longitud_orientativa: "2000-4000 palabras"
+    nota_editorial: >
+      Este tipo requiere conocimiento validable alto del autor.
+      No generar con IA sin conocimiento tácito real como base.
+      La IA puede estructurar y completar — no puede originar.
+
+  # ----------------------------------------------------------
+  - id: lab
+    nombre: "Hands-On Lab"
+    proposito: >
+      Convierte comprensión en capacidad. El lector completa
+      un escenario empresarial realista con restricciones reales,
+      tomando decisiones y observando sus consecuencias.
+      No es un tutorial — es una situación de decisión completa.
+    cuando_usar:
+      - después de una sección del path suficientemente estable
+      - cuando el concepto requiere práctica para consolidar
+      - cuando los trade-offs solo son visibles al aplicar
+    secciones:
+      obligatorias:
+        - id: contexto-empresarial
+          descripcion: >
+            La organización, el proyecto, los stakeholders,
+            las restricciones. Suficientemente específico
+            para ser real — presupuesto, plazos, requisitos
+            técnicos y no técnicos.
+        - id: situacion-inicial
+          descripcion: >
+            El estado del sistema o proyecto al inicio
+            del lab. Qué existe, qué funciona, qué no.
+        - id: objetivo-del-lab
+          descripcion: >
+            Lo que el lector debe conseguir al final.
+            Expresado como decisión o conjunto de decisiones
+            — no como lista de pasos a seguir.
+        - id: restricciones
+          descripcion: >
+            Las restricciones reales del escenario —
+            técnicas, organizacionales, temporales.
+            Sin restricciones realistas no hay decisión real.
+        - id: recursos-disponibles
+          descripcion: >
+            Qué tiene el lector para trabajar — datos,
+            código, documentación, acceso a sistemas.
+        - id: criterios-de-exito
+          descripcion: >
+            Cómo sabe el lector que ha completado el lab
+            correctamente. No una respuesta única sino
+            criterios que una buena solución debe cumplir.
+        - id: debriefing
+          descripcion: >
+            Análisis de decisiones comunes — correctas,
+            incorrectas, y las que dependen del contexto.
+            Conexión explícita con los conceptos del path.
+      opcionales:
+        - id: variante-por-perfil
+          descripcion: >
+            Si el mismo escenario tiene foco distinto
+            según el perfil del lector — qué decisiones
+            toma el architect vs el platform engineer
+            en el mismo escenario.
+        - id: extension
+          descripcion: >
+            Para el lector que quiere ir más lejos —
+            complejidad adicional sobre el mismo escenario.
+    criterios_calidad:
+      - el escenario tiene restricciones reales — no es un caso ideal
+      - el objetivo es una decisión — no una lista de pasos
+      - los criterios de éxito distinguen comprensión real de superficial
+      - el debriefing es honesto sobre trade-offs — no hay solución perfecta
+      - está vinculado a capítulos específicos del path
+    longitud_orientativa: "2500-5000 palabras"
+    vinculacion:
+      capitulos_prerequisito: requerido
+      path_primario: requerido
+      variantes_por_perfil: opcional

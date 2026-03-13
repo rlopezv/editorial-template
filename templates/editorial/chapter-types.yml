@@ -1,1 +1,7 @@
-chapter_types: []
+chapter_types:
+  - concept-introduction
+  - worked-example
+  - field-pattern
+  - practice-problem
+  - lab
+  - synthesis

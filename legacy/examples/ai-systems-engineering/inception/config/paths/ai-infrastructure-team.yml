@@ -1,0 +1,86 @@
+# ============================================================
+# PATH: AI Infrastructure Team
+# ============================================================
+
+perfil:
+  id: ai-infrastructure-team
+  nombre: "AI Infrastructure Team"
+  pregunta_dominante: "¿Sobre qué lo construimos y cómo escala?"
+  forma_lectura: secuencial-primera-vez-referencia-despues
+
+conocimiento_previo:
+  - infraestructura cloud y contenedores a escala
+  - redes y almacenamiento distribuido
+  - capacity planning y auto-scaling
+  - seguridad de infraestructura
+  - gestión de costes de infraestructura
+  - observabilidad de infraestructura
+
+gaps_tipicos:
+  - infraestructura específica de inferencia — GPU, KV-cache, batching
+  - vector databases — arquitectura, sizing, operación a escala
+  - embedding services — throughput, latencia, coste
+  - cómo las decisiones de infraestructura condicionan la arquitectura
+  - trade-offs coste/latencia específicos de sistemas AI
+  - capacity planning para cargas de trabajo probabilísticas
+
+transferencias_peligrosas:
+  lista:
+    - >
+      El scaling horizontal clásico no se aplica directamente
+      a inferencia de modelos. El modelo tiene estado implícito
+      — KV-cache — que hace el scaling más complejo.
+    - >
+      Un vector database no es una base de datos con índices.
+      Sus trade-offs de construcción, actualización, y query
+      son fundamentalmente distintos.
+    - >
+      El coste de un sistema AI no es solo el coste de compute.
+      El coste de tokens, el coste de embeddings, y el coste
+      de almacenamiento de índices forman un perfil de coste
+      distinto al de servicios clásicos.
+
+zona_entrada:
+  descripcion: >
+    Capítulos que establecen cómo las decisiones de infraestructura
+    condicionan la arquitectura — y cómo la arquitectura
+    condiciona los requisitos de infraestructura. La relación
+    es bidireccional y los equipos que no la entienden
+    crean fricción en ambas direcciones.
+  enfasis: >
+    Qué necesita cada tipo de sistema AI de la infraestructura,
+    y qué límites físicos y económicos de la infraestructura
+    determinan qué arquitecturas son posibles.
+  capitulos: pendiente-phase-3
+
+zona_nucleo:
+  enfasis_especifico:
+    - requisitos de infraestructura por tipo de sistema AI
+    - cómo los límites de infraestructura determinan los SLOs posibles
+    - capacidad y coste como parámetros de diseño — no solo de operación
+    - qué infraestructura necesita cada patrón arquitectónico
+  capitulos: pendiente-phase-3
+
+zona_especializada:
+  temas_esperados:
+    - infraestructura de inferencia — GPU, batching, KV-cache, quantization
+    - vector database infrastructure — sizing, sharding, replicación
+    - embedding service infrastructure — throughput y coste a escala
+    - networking para sistemas AI — latencia y ancho de banda
+    - storage para artefactos AI — modelos, índices, embeddings
+    - capacity planning para cargas de trabajo AI
+    - auto-scaling para inferencia
+    - gestión de costes de infraestructura AI
+  capitulos: pendiente-phase-3
+
+labs:
+  enfasis: >
+    El mismo escenario que otros perfiles pero con foco
+    en el dimensionamiento de infraestructura, los trade-offs
+    coste/latencia, y la planificación de capacidad.
+  labs_primarios: pendiente-phase-5
+
+lecturas_complementarias:
+  recomendados:
+    - zona_especializada de platform-engineer
+    - zona_entrada de solution-architect

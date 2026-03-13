@@ -1,0 +1,291 @@
+# ============================================================
+# AI USAGE POLICY
+# Política de uso de IA por tipo de operación
+# ============================================================
+# Define qué modelo usar, qué optimizaciones aplicar,
+# y qué nivel de supervisión humana requiere cada operación.
+# El objetivo es maximizar valor por unidad de coste —
+# no minimizar el uso de IA ni maximizarlo indiscriminadamente.
+# ============================================================
+
+principios:
+  - >
+    El coste de la IA debe ser proporcional al valor irreemplazable
+    que aporta en cada operación. No toda operación justifica
+    el mismo modelo ni el mismo contexto.
+  - >
+    La IA no sustituye el juicio editorial humano. Asiste,
+    estructura, y reduce trabajo mecánico. Las decisiones
+    de fondo son siempre humanas.
+  - >
+    El contenido generado o sintetizado por IA requiere
+    etiquetado explícito de origen hasta que sea validado
+    por el autor o revisor externo.
+  - >
+    El coste de una sesión de elicitación bien ejecutada
+    se amortiza en múltiples capítulos. El coste de síntesis
+    mal ejecutada se paga en revisiones posteriores.
+
+# ------------------------------------------------------------
+# OPERACIONES
+# ------------------------------------------------------------
+operaciones:
+
+  elicitacion:
+    descripcion: >
+      Conversaciones estructuradas para extraer conocimiento
+      tácito del autor. El output son notas que documentan
+      conocimiento que sin la conversación no existiría
+      en forma escrita.
+    modelo: grande
+    contexto: largo-sin-restriccion
+    optimizacion: ninguna
+    justificacion: >
+      El valor es irreemplazable — el conocimiento tácito
+      del autor no puede obtenerse de otra forma. La calidad
+      de la elicitación determina la calidad del libro.
+      Reducir el modelo o el contexto reduce directamente
+      la calidad del output.
+    supervision_humana: total
+    presupuesto: sin-limite-por-sesion
+    frecuencia_esperada: 20-30 sesiones por libro
+    nota: >
+      Las sesiones de elicitación son el uso más costoso
+      y más valioso de la IA en el proceso. Planificar
+      con antelación qué dominios cubrir en cada sesión
+      para maximizar el valor por sesión.
+
+  mapeo_notas_indice:
+    descripcion: >
+      Análisis de qué fragmentos de las notas corresponden
+      a qué capítulos del índice. Identificación de gaps
+      y señales de revisión del índice.
+    modelo: grande
+    contexto: medio-optimizado
+    optimizacion:
+      - procesar sección del índice por llamada — no el índice completo
+      - cachear descripción de capítulos entre llamadas
+      - batching de notas del mismo dominio
+    supervision_humana: validacion-de-señales
+    presupuesto: acotado-por-seccion
+    output_esperado:
+      - matriz de cobertura notas-capítulos
+      - señales de revisión del índice clasificadas
+      - lista de gaps por capítulo
+
+  clasificacion_tipo_capitulo:
+    descripcion: >
+      Asignación del tipo de capítulo según la taxonomía
+      definida en chapter-types.yml. Input es la descripción
+      del capítulo en el índice.
+    modelo: pequeno
+    contexto: corto
+    optimizacion:
+      - few-shot con ejemplos del handbook
+      - batch de 10-20 capítulos por llamada
+    supervision_humana: revision-de-casos-limite
+    presupuesto: minimo
+    nota: >
+      El 80% de clasificaciones son claras. El 20% en
+      frontera entre dos tipos requiere decisión editorial
+      humana — la IA los marca como casos-limite.
+
+  sintesis_capitulo:
+    descripcion: >
+      Generación del borrador de un capítulo desde fragmentos
+      candidatos de notas, aplicando el formato del tipo
+      de capítulo correspondiente. Output incluye gaps
+      anotados explícitamente.
+    modelo: grande
+    contexto: optimizado-por-secciones
+    optimizacion:
+      - sintetizar sección por sección — no el capítulo completo
+      - incluir solo los fragmentos candidatos relevantes
+      - incluir formato destino de la sección actual
+      - no incluir el índice completo — solo descripción del capítulo
+    supervision_humana: revision-completa-antes-de-validacion
+    presupuesto: acotado-por-capitulo
+    output_esperado:
+      - borrador por sección con gaps anotados
+      - fragmentos descartados con justificación
+      - secciones sin cobertura marcadas explícitamente
+
+  evaluacion_calidad:
+    descripcion: >
+      Evaluación de un capítulo contra criterios de calidad
+      del tipo de capítulo y contra referencias externas
+      del dominio. Output es informe estructurado con
+      señales accionables.
+    modelo: medio
+    contexto: medio
+    optimizacion:
+      - criterios como prompt estructurado reutilizable por tipo
+      - evaluar por sección — no el capítulo completo de una vez
+      - reutilizar referencias del corpus entre capítulos del mismo dominio
+    supervision_humana: revision-de-señales-criticas
+    presupuesto: bajo-por-capitulo
+    output_esperado:
+      - cobertura de secciones del formato destino
+      - coherencia con descripción del capítulo en índice
+      - nivel vs público objetivo
+      - gaps vs referencias externas
+      - afirmaciones sin soporte identificadas
+      - inconsistencias terminológicas
+
+  identificacion_referencias:
+    descripcion: >
+      Identificación de referencias canónicas y de calidad
+      para cada capítulo o dominio. Clasificadas por función.
+    modelo: grande
+    contexto: corto
+    optimizacion:
+      - por dominio — no por capítulo individual
+      - reutilizar entre capítulos del mismo dominio
+    supervision_humana: verificacion-de-existencia-y-calidad
+    presupuesto: bajo
+    output_esperado:
+      - referencias canónicas del dominio
+      - referencias de profundidad para calibración
+      - referencias de implementación para el lector
+      - referencias alternativas con enfoque distinto
+    flags_obligatorios:
+      - VERIFICAR-URL
+      - VERIFICAR-EXISTENCIA
+      - POST-CUTOFF
+
+  diseno_lab:
+    descripcion: >
+      Diseño del escenario y estructura de un hands-on lab
+      vinculado a capítulos específicos del path.
+    modelo: grande
+    contexto: medio
+    optimizacion:
+      - input incluye capítulos vinculados y perfil primario
+      - generar escenario base primero — variantes por perfil después
+    supervision_humana: validacion-completa-del-escenario
+    presupuesto: medio
+    nota: >
+      El escenario debe ser validado por el autor para garantizar
+      que refleja situaciones empresariales reales. La IA
+      puede proponer — el autor valida que es reconocible.
+
+  validacion_estructural:
+    descripcion: >
+      Verificación automática de integridad estructural —
+      links rotos, secciones ausentes, referencias cruzadas
+      incorrectas, capítulos sin tipo asignado.
+    modelo: ninguno-preferentemente
+    implementacion: scripts
+    optimizacion: ejecutar en CI antes de cada PR
+    supervision_humana: solo-si-script-detecta-problemas
+    presupuesto: casi-cero
+
+  generacion_changelog:
+    descripcion: >
+      Generación de entradas del changelog editorial
+      a partir de decisiones tomadas y artefactos modificados.
+    modelo: pequeno
+    contexto: corto
+    optimizacion: template estructurado por tipo de decisión
+    supervision_humana: revision-antes-de-commit
+    presupuesto: minimo
+
+# ------------------------------------------------------------
+# ETIQUETADO DE ORIGEN DE CONTENIDO
+# ------------------------------------------------------------
+origen_contenido:
+  valores:
+    autor:
+      descripcion: Escrito directamente por el autor
+      validacion_requerida: ninguna-adicional
+      nivel_confianza: segun-dominio-del-autor
+
+    elicitado:
+      descripcion: >
+        Conocimiento del autor documentado mediante
+        conversación de elicitación con IA
+      validacion_requerida: revision-autor-del-transcript
+      nivel_confianza: segun-dominio-del-autor
+
+    ia-sintetizado-validado:
+      descripcion: >
+        Síntesis de notas o literatura existente generada
+        por IA y validada por el autor o revisor externo
+      validacion_requerida: aprobacion-explicita-del-validador
+      nivel_confianza: segun-validador
+
+    ia-sintetizado-pendiente:
+      descripcion: >
+        Síntesis generada por IA pendiente de validación.
+        No puede entrar en snapshot sin validación.
+      validacion_requerida: obligatoria-antes-de-snapshot
+      nivel_confianza: baja
+
+    ia-generado-sin-base:
+      descripcion: >
+        Contenido generado por IA sin notas del autor
+        como base. Solo permitido en dominios declarados
+        explícitamente en editorial-config.yml con plan
+        de validación externa.
+      validacion_requerida: revisor-externo-obligatorio
+      nivel_confianza: requiere-verificacion
+
+  politica_snapshot: >
+    Ningún contenido con origen ia-sintetizado-pendiente
+    o ia-generado-sin-base puede entrar en un snapshot
+    publicado sin haber pasado a ia-sintetizado-validado
+    mediante aprobación explícita del validador correspondiente.
+
+# ------------------------------------------------------------
+# PRESUPUESTO ORIENTATIVO POR FASE
+# ------------------------------------------------------------
+presupuesto_por_fase:
+  phase-0-inception:
+    operaciones_principales: [elicitacion]
+    intensidad: alta
+    justificacion: decisiones que determinan todo lo posterior
+
+  phase-1-migration:
+    operaciones_principales: [validacion-estructural]
+    intensidad: minima
+    justificacion: operación mecánica sin necesidad de IA
+
+  phase-2-alignment:
+    operaciones_principales: [mapeo_notas_indice, clasificacion_tipo_capitulo]
+    intensidad: media
+    justificacion: análisis estructurado sobre material existente
+
+  phase-3-stabilization:
+    operaciones_principales: [elicitacion, mapeo_notas_indice]
+    intensidad: media-alta
+    justificacion: iteraciones sobre el índice requieren elicitación
+
+  gate-1-index-validation:
+    operaciones_principales: [evaluacion_calidad, identificacion_referencias]
+    intensidad: media
+    justificacion: validación puntual antes de producción
+
+  phase-4-enrichment:
+    operaciones_principales: [sintesis_capitulo, evaluacion_calidad, identificacion_referencias]
+    intensidad: alta
+    justificacion: producción principal de contenido
+
+  gate-2-content-review:
+    operaciones_principales: [evaluacion_calidad]
+    intensidad: media
+    justificacion: revisión sistemática antes de labs
+
+  phase-5-labs:
+    operaciones_principales: [diseno_lab, evaluacion_calidad]
+    intensidad: media
+    justificacion: diseño de escenarios y validación
+
+  phase-6-publishing:
+    operaciones_principales: [generacion_changelog, validacion_estructural]
+    intensidad: baja
+    justificacion: operaciones de cierre predominantemente mecánicas
+
+  phase-7-maintenance:
+    operaciones_principales: [evaluacion_calidad, elicitacion]
+    intensidad: baja-continua
+    justificacion: revisiones periódicas y nuevo conocimiento

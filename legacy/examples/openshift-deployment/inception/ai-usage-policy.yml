@@ -1,0 +1,342 @@
+# ============================================================
+# AI USAGE POLICY
+# Política de uso de IA por tipo de operación
+# OpenShift Deployment — Instancia Operacional
+# ============================================================
+# Define qué operaciones realizar con IA, qué modelo usar,
+# y qué nivel de supervisión humana requiere cada una.
+# Adaptada para un libro nuevo sin corpus de notas previo —
+# la elicitación es la operación principal en las fases iniciales.
+# ============================================================
+
+principios:
+  - >
+    El coste de la IA debe ser proporcional al valor irreemplazable
+    que aporta en cada operación. No toda operación justifica
+    el mismo modelo ni el mismo contexto.
+  - >
+    La IA no sustituye el juicio operacional del autor.
+    Asiste, estructura, y reduce trabajo mecánico.
+    Las decisiones sobre qué es verdad en producción
+    son siempre del autor.
+  - >
+    El contenido generado o sintetizado por IA requiere
+    etiquetado explícito de origen hasta que sea validado
+    por el autor. En un libro operacional, la validación
+    incluye verificar que el comportamiento descrito
+    corresponde al comportamiento real del sistema.
+  - >
+    Los field-patterns no pueden originarse en IA.
+    Documentan experiencia operacional real del autor.
+    La IA puede estructurar un pattern que el autor describe —
+    no puede inventar uno.
+
+# ------------------------------------------------------------
+# OPERACIONES
+# ------------------------------------------------------------
+operaciones:
+
+  elicitacion:
+    descripcion: >
+      Conversaciones estructuradas para extraer conocimiento
+      operacional tácito del autor. El output son notas que
+      documentan experiencia que sin la conversación no existiría
+      en forma escrita — patrones de fallo, secuencias de
+      diagnóstico, decisiones en contexto real.
+    modelo: grande
+    contexto: largo-sin-restriccion
+    optimizacion: ninguna
+    justificacion: >
+      El conocimiento operacional tácito es el activo principal
+      del libro. La calidad de la elicitación determina directamente
+      la calidad del contenido — especialmente de los field-patterns
+      y de los worked-examples. Reducir el modelo o el contexto
+      reduce la calidad del output.
+    supervision_humana: total
+    presupuesto: sin-limite-por-sesion
+    frecuencia_esperada: 30-50 sesiones
+    nota: >
+      Sin corpus previo, la elicitación es la única fuente
+      de conocimiento del libro en las fases iniciales.
+      Planificar sesiones por dominio antes de empezar Phase 4.
+      Una sesión bien preparada cubre 2-3 capítulos del mismo
+      tipo o del mismo dominio.
+
+  generacion_index_v0:
+    descripcion: >
+      Generación del índice hipótesis inicial desde el
+      framework conceptual del autor. Sin corpus de notas —
+      el índice emerge de la discusión sobre el dominio
+      con el autor como interlocutor experto.
+    modelo: grande
+    contexto: largo
+    optimizacion:
+      - estructura la conversación por secciones del libro —
+        no intentar el índice completo en una sola sesión
+      - usar los perfiles declarados en editorial-config.yml
+        como filtro — cada sección debe tener origen claro
+        en la pregunta dominante de al menos un perfil
+    supervision_humana: revision-completa-del-autor
+    presupuesto: acotado-por-sesion
+    nota: >
+      El index-v0 de un libro sin corpus es más inestable
+      que el de un libro con notas — cambiará más en Phase 2
+      y Phase 3. Tratarlo como hipótesis de trabajo, no como
+      estructura definitiva.
+
+  clasificacion_tipo_capitulo:
+    descripcion: >
+      Asignación del tipo de capítulo según la taxonomía
+      de chapter-types.yml. Input es la descripción del
+      capítulo en el índice.
+    modelo: pequeno
+    contexto: corto
+    optimizacion:
+      - few-shot con ejemplos del propio libro cuando estén disponibles
+      - batch de 10-20 capítulos por llamada
+    supervision_humana: revision-de-casos-limite
+    presupuesto: minimo
+    nota: >
+      En un libro operacional, la frontera entre concept-introduction
+      y worked-example es frecuente — muchos conceptos operacionales
+      se aprenden mejor con un ejemplo concreto que con definición primero.
+      Los casos-límite entre estos dos tipos requieren decisión editorial.
+
+  sintesis_capitulo:
+    descripcion: >
+      Generación del borrador de un capítulo desde notas
+      de elicitación y/o literatura existente, aplicando
+      el formato del tipo de capítulo correspondiente.
+      En ausencia de notas de elicitación, el autor
+      describe el capítulo directamente en la conversación.
+    modelo: grande
+    contexto: optimizado-por-secciones
+    optimizacion:
+      - sintetizar sección por sección — no el capítulo completo
+      - incluir solo los fragmentos de notas de elicitación relevantes
+      - incluir formato destino de la sección actual
+      - los YAML de ejemplo requieren revisión técnica del autor —
+        generarlos marcados como VERIFICAR-YAML hasta validación
+    supervision_humana: revision-completa-antes-de-validacion
+    presupuesto: acotado-por-capitulo
+    output_esperado:
+      - borrador por sección con gaps anotados
+      - YAMLs de ejemplo marcados como VERIFICAR-YAML
+      - referencias técnicas marcadas como VERIFICAR-URL
+    nota_openshift: >
+      Los manifests YAML generados por IA deben verificarse
+      contra la versión de OpenShift del entorno objetivo.
+      Las APIs y los campos disponibles cambian entre versiones.
+      Marcar siempre como VERIFICAR-YAML hasta prueba en clúster.
+
+  evaluacion_calidad:
+    descripcion: >
+      Evaluación de un capítulo contra criterios de calidad
+      del tipo y contra comportamiento real del sistema.
+    modelo: medio
+    contexto: medio
+    optimizacion:
+      - criterios como prompt estructurado reutilizable por tipo
+      - evaluar por sección — no el capítulo completo de una vez
+    supervision_humana: revision-de-señales-criticas
+    presupuesto: bajo-por-capitulo
+    output_esperado:
+      - cobertura de secciones del formato destino
+      - coherencia con descripción del capítulo en índice
+      - YAMLs que requieren verificación técnica identificados
+      - afirmaciones sobre comportamiento del sistema sin soporte
+      - nivel vs público objetivo
+    flags_obligatorios:
+      - VERIFICAR-YAML
+      - VERIFICAR-COMPORTAMIENTO
+      - VERIFICAR-VERSION-OPENSHIFT
+
+  identificacion_referencias:
+    descripcion: >
+      Identificación de referencias técnicas de calidad —
+      documentación oficial, KEPs relevantes, posts de
+      referencia de Red Hat engineering blog.
+    modelo: grande
+    contexto: corto
+    optimizacion:
+      - por dominio — no por capítulo individual
+      - separar documentación oficial (más estable) de posts (más volátiles)
+    supervision_humana: verificacion-de-existencia-y-version
+    presupuesto: bajo
+    output_esperado:
+      - documentación oficial Red Hat para el dominio
+      - documentación upstream Kubernetes cuando sea relevante
+      - referencias de calidad para profundización
+    flags_obligatorios:
+      - VERIFICAR-URL
+      - VERIFICAR-VERSION-OPENSHIFT
+      - POST-CUTOFF
+    nota: >
+      La documentación de OpenShift cambia con cada versión mayor.
+      Vincular referencias a la versión específica del entorno objetivo
+      cuando sea posible.
+
+  diseno_lab:
+    descripcion: >
+      Diseño del escenario y estructura de un hands-on lab
+      vinculado a capítulos específicos del path.
+    modelo: grande
+    contexto: medio
+    optimizacion:
+      - input incluye capítulos vinculados y perfil primario
+      - generar escenario base primero — variantes por perfil después
+      - los manifests de estado inicial del lab requieren validación técnica
+    supervision_humana: validacion-completa-del-escenario-en-cluster
+    presupuesto: medio
+    nota: >
+      Los labs de un libro operacional requieren un clúster real
+      para validar que el escenario es reproducible y que las
+      restricciones declaradas son reales. No publicar un lab
+      sin haberlo ejecutado en el entorno objetivo.
+
+  validacion_estructural:
+    descripcion: >
+      Verificación automática de integridad estructural —
+      links rotos, secciones ausentes, referencias cruzadas
+      incorrectas, capítulos sin tipo asignado.
+    modelo: ninguno-preferentemente
+    implementacion: scripts
+    optimizacion: ejecutar en CI antes de cada PR
+    supervision_humana: solo-si-script-detecta-problemas
+    presupuesto: casi-cero
+
+  generacion_changelog:
+    descripcion: >
+      Generación de entradas del changelog editorial
+      a partir de decisiones tomadas y artefactos modificados.
+    modelo: pequeno
+    contexto: corto
+    optimizacion: template estructurado por tipo de decisión
+    supervision_humana: revision-antes-de-commit
+    presupuesto: minimo
+
+# ------------------------------------------------------------
+# ETIQUETADO DE ORIGEN DE CONTENIDO
+# ------------------------------------------------------------
+origen_contenido:
+  valores:
+    autor:
+      descripcion: Escrito directamente por el autor
+      validacion_requerida: ninguna-adicional
+      nivel_confianza: segun-dominio-del-autor
+
+    elicitado:
+      descripcion: >
+        Conocimiento operacional del autor documentado
+        mediante conversación de elicitación con IA
+      validacion_requerida: revision-autor-del-transcript
+      nivel_confianza: segun-dominio-del-autor
+
+    ia-sintetizado-validado:
+      descripcion: >
+        Síntesis generada por IA y validada por el autor.
+        Para contenido técnico operacional: validación incluye
+        verificación de YAMLs y comportamientos en clúster.
+      validacion_requerida: aprobacion-explicita-del-validador
+      nivel_confianza: segun-validador
+
+    ia-sintetizado-pendiente:
+      descripcion: >
+        Síntesis generada por IA pendiente de validación.
+        No puede entrar en snapshot sin validación.
+      validacion_requerida: obligatoria-antes-de-snapshot
+      nivel_confianza: baja
+
+    ia-generado-sin-base:
+      descripcion: >
+        Contenido generado por IA sin notas del autor
+        ni experiencia operacional verificada como base.
+        Máxima cautela — especialmente en YAMLs y comportamientos.
+      validacion_requerida: revisor-externo-obligatorio
+      nivel_confianza: requiere-verificacion-tecnica-en-cluster
+
+  flags_tecnicos:
+    VERIFICAR-YAML:
+      descripcion: >
+        Manifest YAML generado o sugerido por IA que no ha sido
+        probado en el entorno objetivo. No publicar sin verificación.
+    VERIFICAR-COMPORTAMIENTO:
+      descripcion: >
+        Afirmación sobre el comportamiento de OpenShift o Kubernetes
+        que no ha sido verificada en un clúster real.
+    VERIFICAR-VERSION-OPENSHIFT:
+      descripcion: >
+        Contenido que puede variar según la versión de OpenShift.
+        Verificar contra la versión del entorno objetivo declarado.
+
+  politica_snapshot: >
+    Ningún contenido con origen ia-sintetizado-pendiente puede
+    entrar en un snapshot publicado sin validación explícita.
+    Ningún YAML marcado como VERIFICAR-YAML puede entrar
+    en snapshot sin haber sido probado en el entorno objetivo.
+
+# ------------------------------------------------------------
+# PRESUPUESTO ORIENTATIVO POR FASE
+# ------------------------------------------------------------
+presupuesto_por_fase:
+  phase-0-inception:
+    operaciones_principales: [elicitacion, generacion_index_v0]
+    intensidad: alta
+    justificacion: >
+      Sin corpus previo, Phase 0 es la única fuente de estructura.
+      La elicitación aquí produce tanto el índice como las primeras
+      notas que se sintetizarán en Phase 4.
+
+  phase-1-migration:
+    operaciones_principales: []
+    intensidad: no-aplica
+    justificacion: No hay corpus de notas que migrar.
+
+  phase-2-alignment:
+    operaciones_principales: [clasificacion_tipo_capitulo]
+    intensidad: baja
+    justificacion: >
+      Sin corpus, Phase 2 es principalmente revisión editorial
+      del index-v0 generado en Phase 0.
+
+  phase-3-stabilization:
+    operaciones_principales: [elicitacion]
+    intensidad: media
+    justificacion: >
+      La estabilización del índice puede requerir elicitación
+      adicional para resolver ambigüedades o gaps identificados
+      en Phase 2.
+
+  gate-1-index-validation:
+    operaciones_principales: [evaluacion_calidad, identificacion_referencias]
+    intensidad: media
+
+  phase-4-enrichment:
+    operaciones_principales: [elicitacion, sintesis_capitulo, evaluacion_calidad, identificacion_referencias]
+    intensidad: muy-alta
+    justificacion: >
+      La elicitación continúa en paralelo con la síntesis.
+      Sin corpus de notas previo, cada capítulo requiere
+      una sesión de elicitación antes de la síntesis.
+
+  gate-2-content-review:
+    operaciones_principales: [evaluacion_calidad]
+    intensidad: media
+
+  phase-5-labs:
+    operaciones_principales: [diseno_lab, evaluacion_calidad]
+    intensidad: media
+    nota: >
+      Los labs requieren validación en clúster real.
+      Planificar tiempo de acceso al entorno objetivo.
+
+  phase-6-publishing:
+    operaciones_principales: [generacion_changelog, validacion_estructural]
+    intensidad: baja
+
+  phase-7-maintenance:
+    operaciones_principales: [evaluacion_calidad, elicitacion]
+    intensidad: baja-continua
+    nota: >
+      OpenShift tiene releases frecuentes. Planificar revisiones
+      de contenido por cada versión mayor del entorno objetivo.

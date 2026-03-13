@@ -1,0 +1,17 @@
+# ============================================================
+# SCHEMA: chapter-types.yml
+# ============================================================
+# Validation schema for inception/config/chapter-types.yml
+# To be developed when scripts/validate-structure.sh is implemented.
+#
+# Required per type:
+#   - id (string, unique)
+#   - nombre (string)
+#   - descripcion (string)
+#   - formato.secciones_requeridas (list)
+#   - formato.secciones_opcionales (list)
+#   - criterios_calidad (list)
+#   - origen_valido (list — autor | elicitado | ia-sintetizado-validado)
+# ============================================================
+
+# Placeholder — schema definition pending scripts/ implementation

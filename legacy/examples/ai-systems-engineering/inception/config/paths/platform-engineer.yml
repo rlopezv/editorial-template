@@ -1,0 +1,82 @@
+# ============================================================
+# PATH: Platform Engineer
+# ============================================================
+
+perfil:
+  id: platform-engineer
+  nombre: "Platform Engineer"
+  pregunta_dominante: "¿Cómo lo sostenemos en producción?"
+  forma_lectura: secuencial-primera-vez-referencia-despues
+
+conocimiento_previo:
+  - operación de servicios distribuidos
+  - observabilidad clásica — logs, métricas, trazas
+  - gestión de plataformas internas y developer experience
+  - CI/CD y gestión de releases
+  - SLOs, alerting, y gestión de incidentes
+  - gestión de costes de infraestructura
+
+gaps_tipicos:
+  - nuevos artefactos AI que gestionar — prompts, índices, embeddings
+  - observabilidad semántica más allá de métricas operacionales
+  - operación de índices vectoriales y embedding services
+  - gestión de drift — cuándo un sistema que funciona deja de funcionar
+  - SLOs para sistemas probabilísticos — qué se puede garantizar y qué no
+  - gestión de costes de tokens a escala
+
+transferencias_peligrosas:
+  lista:
+    - >
+      Un sistema AI puede degradarse sin que ninguna métrica
+      operacional clásica lo detecte. La latencia y el error rate
+      pueden estar bien mientras la calidad de las respuestas
+      se deteriora silenciosamente.
+    - >
+      Desplegar una nueva versión del prompt es un evento
+      de producción equivalente a desplegar nuevo código.
+      Requiere el mismo nivel de validación y rollback.
+    - >
+      Un índice vectorial no es una base de datos que simplemente
+      se actualiza. Reconstruirlo tiene coste y tiempo —
+      y la versión antigua sigue sirviendo durante ese tiempo.
+
+zona_entrada:
+  descripcion: >
+    Capítulos que establecen qué hace diferente operar
+    un sistema AI de operar microservicios — y por qué
+    las herramientas y procesos conocidos son insuficientes.
+  enfasis: >
+    Qué nuevos artefactos aparecen, qué nuevos modos de fallo
+    existen, y qué gaps tiene la observabilidad clásica.
+  capitulos: pendiente-phase-3
+
+zona_nucleo:
+  enfasis_especifico:
+    - failure modes de cada patrón arquitectónico
+    - qué señales operacionales indican degradación de calidad
+    - ciclo de vida de artefactos AI desde perspectiva operacional
+    - qué requiere cada tipo de sistema para ser operable
+  capitulos: pendiente-phase-3
+
+zona_especializada:
+  temas_esperados:
+    - AI gateway y platform engineering para sistemas AI
+    - runbooks operacionales por tipo de sistema y fallo
+    - gestión de costes y presupuestos de tokens
+    - drift detection y alerting semántico
+    - incident management para sistemas AI
+    - gestión del ciclo de vida de índices vectoriales
+    - developer experience para equipos que construyen sobre la plataforma
+  capitulos: pendiente-phase-3
+
+labs:
+  enfasis: >
+    El mismo escenario que otros perfiles pero con foco
+    en los requisitos operacionales que la arquitectura impone
+    y en la respuesta a incidentes cuando algo falla.
+  labs_primarios: pendiente-phase-5
+
+lecturas_complementarias:
+  recomendados:
+    - zona_especializada de ai-infrastructure-team
+    - zona_entrada de senior-software-engineer

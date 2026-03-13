@@ -1,0 +1,81 @@
+# ============================================================
+# CHAPTER TYPES
+# ============================================================
+# Taxonomía de tipos de capítulo del proyecto.
+# Generado en Phase 0 — Inception, Decision 4.
+#
+# Tipos estándar disponibles como templates en:
+#   editorial-template/templates/chapter/by-type/
+#
+# Ver examples/ para instancias de referencia completas.
+# ============================================================
+
+tipos: []
+
+# Estructura de cada tipo:
+#
+# - id: ""
+#   nombre: ""
+#   descripcion: ""
+#
+#   formato:
+#     secciones_requeridas: []
+#     secciones_opcionales: []
+#
+#   criterios_calidad: []
+#
+#   # origen_valido: autor | elicitado | ia-sintetizado-validado | ia-generado-sin-base
+#   origen_valido: []
+#
+#   # validacion_minima: experto-propio | experto-externo | nominal | pendiente
+#   validacion_minima: experto-propio
+
+# ------------------------------------------------------------
+# TIPOS ESTÁNDAR PARA LIBRO TÉCNICO PEDAGÓGICO
+# Descomentar y ajustar los que apliquen al proyecto.
+# ------------------------------------------------------------
+
+# - id: concept-introduction
+#   nombre: "Concept Introduction"
+#   descripcion: >
+#     Introduce un concepto desde cero conectando con el conocimiento
+#     previo del lector. Un concepto por capítulo.
+#   formato:
+#     secciones_requeridas:
+#       - what-you-already-know
+#       - the-concept
+#       - why-it-matters
+#       - concrete-example
+#       - key-takeaways
+#     secciones_opcionales:
+#       - what-changes-with-other-components
+#       - common-misconceptions
+#       - further-reading
+#   criterios_calidad:
+#     - concepto único y claramente delimitado
+#     - analogía nombrada con sus límites explícitos
+#     - ejemplo en contexto empresarial real
+#   origen_valido: [autor, elicitado, ia-sintetizado-validado]
+#   validacion_minima: experto-propio
+
+# - id: field-pattern
+#   nombre: "Field Pattern"
+#   descripcion: >
+#     Documenta un patrón observado en producción real.
+#     Requiere experiencia operacional directa del autor.
+#   formato:
+#     secciones_requeridas:
+#       - where-it-appears
+#       - how-it-starts
+#       - how-it-develops
+#       - the-intervention
+#       - a-real-case
+#     secciones_opcionales:
+#       - why-its-hard-to-see
+#       - prevention
+#   criterios_calidad:
+#     - basado en experiencia real, no hipotética
+#     - caso real incluido aunque sea anonimizado
+#     - señales tempranas descritas con precisión observable
+#   origen_valido: [autor, elicitado]
+#   validacion_minima: experto-propio

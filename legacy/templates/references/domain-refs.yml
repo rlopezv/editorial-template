@@ -1,0 +1,72 @@
+# ============================================================
+# DOMAIN REFERENCES
+# ============================================================
+# Corpus de referencias del dominio organizado por sección.
+# Generado en Phase 0 — Inception como hipótesis inicial.
+# Enriquecer durante Phase 2 y Phase 4.
+#
+# Tres niveles de uso:
+#   - evaluacion: calibrar profundidad y cobertura de capítulos
+#   - lector: aparecer en referencias del capítulo publicado
+#   - ambos: los dos usos anteriores
+#
+# Estado de verificación:
+#   - verificado: URL confirmada y recurso accesible
+#   - pendiente: identificado pero sin verificar
+#   - post-cutoff: puede existir versión más reciente
+#
+# Ver examples/ para instancias de referencia completas.
+# ============================================================
+
+meta:
+  version: v0
+  generado_en: phase-0-inception
+  fecha: ""
+  cobertura: por-seccion
+  tipos_incluidos: []
+  # Ejemplos de tipos:
+  # - papers-academicos-fundacionales
+  # - libros-tecnicos-referencia
+  # - documentacion-oficial-frameworks
+  # - engineering-blogs-empresas-referencia
+  nota: >
+    Todas las URLs requieren verificación antes de incluir
+    en capítulos publicados. Ver ai-usage-policy.yml para
+    política de verificación de referencias.
+
+# ------------------------------------------------------------
+# REFERENCIAS CANÓNICAS DEL DOMINIO
+# Aplican al libro completo — no a una sección específica
+# ------------------------------------------------------------
+canonicas: []
+# Estructura de cada referencia:
+#
+# - id: ""
+#   tipo: ""
+#   titulo: ""
+#   autores: []
+#   año: ""
+#   url: ""
+#   estado_url: pendiente
+#   uso: evaluacion | lector | ambos
+#   nota: >
+#     Relevancia para el dominio.
+
+# ------------------------------------------------------------
+# REFERENCIAS POR SECCIÓN
+# ------------------------------------------------------------
+secciones: []
+# Estructura de cada sección:
+#
+# - seccion: ""
+#   referencias:
+#     - id: ""
+#       tipo: ""
+#       titulo: ""
+#       autores: []
+#       año: ""
+#       url: ""
+#       estado_url: pendiente
+#       uso: evaluacion | lector | ambos
+#       nota: >
+#         Relevancia para esta sección.

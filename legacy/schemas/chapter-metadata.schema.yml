@@ -1,0 +1,21 @@
+# ============================================================
+# SCHEMA: chapter-metadata.yml
+# ============================================================
+# Validation schema for content/[chapter-slug]/metadata.yml
+# To be developed when scripts/validate-structure.sh is implemented.
+#
+# Required fields:
+#   - id (string, matches directory name)
+#   - titulo (string)
+#   - seccion (integer)
+#   - tipo (string, must exist in chapter-types.yml)
+#   - perfiles_primarios (list, must exist in paths/)
+#   - estado (enum: placeholder|borrador-autor|borrador-autor-validado|revisado-externamente)
+#   - origen (enum: autor|elicitado|ia-sintetizado-validado|ia-sintetizado-pendiente|ia-generado-sin-base)
+#   - validacion.tipo (enum: experto-propio|experto-externo|nominal|pendiente)
+#   - confianza_declarada (enum: alta|media|baja|no-validado)
+#   - visible_al_lector (boolean)
+#   - tiene_lab (boolean)
+# ============================================================
+
+# Placeholder — schema definition pending scripts/ implementation

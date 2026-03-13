@@ -1,0 +1,26 @@
+# ============================================================
+# SCHEMA: snapshot-manifest.yml
+# ============================================================
+# Validation schema for snapshots/[version]/manifest.yml
+# To be developed when scripts/generate-snapshot.sh is implemented.
+#
+# Required fields:
+#   - version (string, format: v{major}.{minor}-{phase})
+#   - fecha (date)
+#   - indice_version (string, references index/history/)
+#   - capitulos (list):
+#       - id (string)
+#       - titulo (string)
+#       - estado_visible (enum: Reviewed|In progress|Pending external review|Placeholder)
+#       - estado_interno (enum: matches chapter-metadata estado values)
+#       - origen (string)
+#   - cobertura:
+#       - total (integer)
+#       - reviewed (integer)
+#       - in_progress (integer)
+#       - pending_external (integer)
+#       - placeholder (integer)
+#   - paths_completos (list — paths where all nucleus chapters are Reviewed)
+# ============================================================
+
+# Placeholder — schema definition pending scripts/ implementation

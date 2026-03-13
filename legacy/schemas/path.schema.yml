@@ -1,0 +1,21 @@
+# ============================================================
+# SCHEMA: path.yml
+# ============================================================
+# Validation schema for inception/config/paths/[profile].yml
+# To be developed when scripts/validate-structure.sh is implemented.
+#
+# Required fields:
+#   - perfil.id (string)
+#   - perfil.nombre (string)
+#   - perfil.pregunta_dominante (string)
+#   - perfil.forma_lectura (string)
+#   - conocimiento_previo (list)
+#   - gaps_tipicos (list)
+#   - transferencias_peligrosas.lista (list)
+#   - zona_entrada (descripcion, enfasis, capitulos)
+#   - zona_nucleo (descripcion, enfasis_especifico, capitulos)
+#   - zona_especializada (descripcion, temas_esperados, capitulos)
+#   - labs (enfasis, labs_primarios, variantes_de_labs_otros_perfiles)
+# ============================================================
+
+# Placeholder — schema definition pending scripts/ implementation

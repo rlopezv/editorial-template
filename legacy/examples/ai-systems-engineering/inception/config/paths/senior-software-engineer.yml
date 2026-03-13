@@ -1,0 +1,96 @@
+# ============================================================
+# PATH: Senior Software Engineer
+# ============================================================
+
+perfil:
+  id: senior-software-engineer
+  nombre: "Senior Software Engineer"
+  pregunta_dominante: "¿Cómo lo construimos correctamente?"
+  forma_lectura: secuencial-con-referencia-posterior
+
+conocimiento_previo:
+  - Java y arquitecturas contenerizadas
+  - microservicios y APIs REST
+  - CI/CD y observabilidad clásica
+  - testing — unitario, integración, e2e
+  - gestión de dependencias y artefactos
+  - revisión de código y calidad técnica
+
+gaps_tipicos:
+  - qué cambia cuando el sistema tiene un componente probabilístico
+  - el prompt como artefacto de software versionable y testeable
+  - por qué el testing clásico es necesario pero insuficiente
+  - evaluación como disciplina de ingeniería continua
+  - cómo evolucionar un sistema AI sin romper comportamiento existente
+
+transferencias_peligrosas:
+  descripcion: >
+    Analogías del conocimiento previo que son parcialmente
+    correctas pero pueden llevar a implementaciones erróneas
+  lista:
+    - >
+      Un prompt no es una cadena de texto configurable.
+      Es un artefacto con su propio ciclo de vida, versionado,
+      y proceso de validación antes de despliegue.
+    - >
+      Un test que pasa no garantiza que el sistema AI funciona.
+      Los tests clásicos verifican comportamiento determinístico.
+      La evaluación mide distribución de calidad sobre una muestra.
+    - >
+      El logging clásico no es suficiente para observar
+      un sistema AI. Necesitas capturar prompts, contextos,
+      y outputs para poder debuggear comportamiento inesperado.
+    - >
+      Una refactorización de código puede cambiar el comportamiento
+      del sistema AI sin tocar los prompts si cambia el flujo
+      de construcción de contexto.
+
+zona_entrada:
+  descripcion: >
+    Capítulos que el Senior Software Engineer debe leer primero.
+    Establecen qué cambia fundamentalmente cuando introduces
+    un componente probabilístico en un sistema que de otro
+    modo conoces bien.
+  enfasis: >
+    Qué cambia y por qué — no qué es nuevo desde cero.
+    Desde el conocimiento de microservicios hacia AI systems.
+  capitulos: pendiente-phase-3
+
+zona_nucleo:
+  descripcion: >
+    Capítulos compartidos con todos los perfiles.
+    El Senior Software Engineer los lee con énfasis en
+    implementación correcta y ciclo de desarrollo.
+  enfasis_especifico:
+    - cómo implementar cada patrón correctamente
+    - qué pruebas necesita cada tipo de componente
+    - cómo versionar y gestionar artefactos AI
+    - cómo detectar regresiones en sistemas probabilísticos
+    - cuándo y cómo evolucionar el sistema sin romperlo
+  capitulos: pendiente-phase-3
+
+zona_especializada:
+  descripcion: >
+    Capítulos principalmente relevantes para este perfil.
+  temas_esperados:
+    - implementación de retrieval pipelines
+    - testing y evaluación de sistemas AI como disciplina de ingeniería
+    - gestión de artefactos — prompts, embeddings, datasets de evaluación
+    - CI/CD para sistemas AI — qué cambia en el pipeline
+    - patrones de implementación por tipo de sistema AI
+    - debugging de comportamiento inesperado en sistemas probabilísticos
+  capitulos: pendiente-phase-3
+
+labs:
+  enfasis: >
+    El mismo escenario que otros perfiles pero con foco
+    en la implementación correcta y el ciclo de calidad.
+    El lector debe implementar, testear, y evaluar —
+    con las restricciones de tiempo y calidad de un proyecto real.
+  labs_primarios: pendiente-phase-5
+  variantes_de_labs_otros_perfiles: pendiente-phase-5
+
+lecturas_complementarias:
+  recomendados:
+    - zona_especializada de platform-engineer
+    - zona_entrada de solution-architect

@@ -1,0 +1,110 @@
+# ============================================================
+# PATH: Platform Engineer
+# ============================================================
+
+perfil:
+  id: platform-engineer
+  nombre: "Platform Engineer"
+  pregunta_dominante: "¿Cómo opero la plataforma para que los equipos de aplicación trabajen sin fricciones?"
+  forma_lectura: secuencial-primera-vez-referencia-despues
+
+conocimiento_previo:
+  - administración de sistemas Linux y scripting avanzado
+  - operación de servicios distribuidos
+  - experiencia con al menos un orquestador — Kubernetes, Nomad o equivalente
+  - gestión de infraestructura como código — Ansible, Terraform o equivalente
+  - gestión de incidentes y SLOs en entornos de producción
+  - seguridad operacional — políticas, accesos, bastionado
+
+gaps_tipicos:
+  - modelo de tenancy de OpenShift — proyectos, cuotas y límites
+    desde perspectiva de plataforma multi-equipo
+  - operación de OpenShift Pipelines — gestión del ciclo de vida
+    de pipelines de múltiples equipos sobre la misma plataforma
+  - gestión de imágenes — ImageStreams, registry interno,
+    políticas de pull y firma de imágenes
+  - cómo los workloads de aplicación afectan a la estabilidad
+    del clúster — resource pressure, noisy neighbours
+  - developer experience como responsabilidad de plataforma —
+    qué necesitan los equipos de aplicación para ser autónomos
+
+transferencias_peligrosas:
+  lista:
+    - >
+      Las resource quotas no son solo una protección del clúster.
+      Son el contrato entre la plataforma y el equipo de aplicación.
+      Una quota mal calibrada bloquea despliegues en producción
+      sin que el equipo de aplicación pueda diagnosticarlo solo.
+    - >
+      Un namespace en OpenShift no es una VM. Dos equipos
+      con namespaces en el mismo nodo comparten CPU y memoria.
+      Los límites en el Deployment del equipo de aplicación
+      no sustituyen a la gestión de capacidad del nodo.
+    - >
+      Dar acceso cluster-admin para "desbloquear" un problema
+      operacional es difícil de revertir y crea dependencias
+      que escalan. El RBAC bien diseñado desde el principio
+      cuesta menos que retirar permisos después.
+
+zona_entrada:
+  descripcion: >
+    Capítulos que establecen el modelo de OpenShift desde
+    la perspectiva de quien gestiona la plataforma para
+    múltiples equipos. Diferencias con administrar un único
+    clúster para un único equipo.
+  enfasis: >
+    Modelo de tenancy primero — proyectos, cuotas, RBAC.
+    La plataforma como producto interno con usuarios que
+    son otros equipos de ingeniería.
+  capitulos: pendiente-phase-3
+
+zona_nucleo:
+  descripcion: >
+    Operación de la plataforma de aplicaciones. Todo lo
+    que la plataforma debe proveer para que los equipos
+    de aplicación puedan desplegar, operar y escalar
+    de forma autónoma.
+  enfasis_especifico:
+    - gestión de tenancy — proyectos, cuotas, límites por equipo
+    - gestión del ciclo de vida de imágenes — ImageStreams, registry, políticas
+    - operación de pipelines de múltiples equipos — recursos compartidos vs dedicados
+    - network policies como herramienta de aislamiento y gobierno
+    - gestión de certificados y routes — wildcard, custom domains
+    - modelo de SCC — qué políticas aplicar y cuándo hacer excepciones
+  capitulos: pendiente-phase-3
+
+zona_especializada:
+  descripcion: >
+    Plataforma interna como producto. Madurez operacional,
+    self-service y gestión a escala.
+  temas_esperados:
+    - developer experience — qué hace que un equipo sea autónomo
+      sobre la plataforma y qué lo bloquea
+    - plantillas y Helm charts como producto de plataforma
+    - gestión de upgrades de la plataforma con workloads activos
+    - capacity planning y chargeback desde perspectiva de plataforma
+    - operación de service mesh — cuándo activarlo, coste operacional
+    - gestión de secrets a escala — Vault, External Secrets Operator
+    - observabilidad de plataforma vs observabilidad de aplicación
+  capitulos: pendiente-phase-3
+
+labs:
+  enfasis: >
+    Escenarios de configuración de plataforma con impacto
+    en equipos de aplicación. La plataforma engineer como
+    responsable de que otros equipos puedan trabajar —
+    y como primera línea cuando la plataforma bloquea
+    un despliegue sin causa obvia.
+  labs_primarios: pendiente-phase-5
+  variantes_de_labs_otros_perfiles:
+    - en labs de DevOps: foco en los requisitos que el DevOps
+      necesita de la plataforma y cómo la plataforma los provee
+    - en labs de operaciones: foco en la respuesta a incidentes
+      que involucran tanto a plataforma como a aplicación
+
+lecturas_complementarias:
+  recomendados:
+    - zona_nucleo de devops-engineer para entender qué necesitan
+      los equipos que usan la plataforma
+    - zona_nucleo de operations-engineer para entender qué información
+      operacional necesita quien gestiona el servicio en producción

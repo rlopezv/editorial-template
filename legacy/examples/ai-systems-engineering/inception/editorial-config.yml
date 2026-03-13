@@ -1,0 +1,405 @@
+# ============================================================
+# EDITORIAL CONFIG
+# AI Systems Engineering — Instancia Pedagógica
+# ============================================================
+# Artefacto generado en Phase 0 — Inception
+# Gobierna todas las decisiones del proceso editorial
+# Modificar solo mediante decisión editorial documentada
+# en changelog-editorial.md
+# ============================================================
+
+proyecto:
+  titulo: "AI Systems Engineering"
+  subtitulo: "Diseño, construcción y operación de sistemas AI en entornos empresariales"
+  instancia: pedagogica
+  tipo: origen
+  derivada_de: null
+  instancias_derivadas:
+    - id: handbook
+      directorio: ../instancia-handbook/
+      transformacion: pedagogico-a-referencia
+      estado: pendiente
+
+# ------------------------------------------------------------
+# SCOPE
+# ------------------------------------------------------------
+scope:
+  objetivo: pedagogico
+
+  dominio:
+    cubre:
+      - arquitectura de sistemas AI en producción
+      - ingeniería de sistemas AI como disciplina
+      - ciclo de vida completo de soluciones AI empresariales
+      - operación y gobierno de sistemas AI
+      - decisiones de diseño y sus consecuencias operacionales
+      - patrones de fallo en contexto empresarial real
+
+    no_cubre:
+      - teoría de machine learning y entrenamiento de modelos
+      - matemáticas de redes neuronales
+      - research de nuevos modelos o arquitecturas de modelos
+      - implementación de modelos desde cero
+      - ciencia de datos y análisis estadístico
+
+  propuesta_valor_diferencial: >
+    Conocimiento de ciclo de vida completo desde la perspectiva
+    de un solution engineer con experiencia en proyectos empresariales
+    complejos. Cubre la fricción real entre diseño y operación,
+    los patrones de fallo que no aparecen en la literatura,
+    y las decisiones en contexto empresarial con sus consecuencias
+    reales. No es un libro sobre componentes — es un libro sobre
+    cómo los componentes fallan cuando interactúan en organizaciones
+    reales.
+
+  libros_referencia_externos:
+    - titulo: "Designing Machine Learning Systems"
+      autor: "Chip Huyen"
+      funcion: calibracion-nivel-tecnico
+    - titulo: "Designing Data-Intensive Applications"
+      autor: "Martin Kleppmann"
+      funcion: referencia-patrones-sistemas
+
+# ------------------------------------------------------------
+# PÚBLICO OBJETIVO
+# ------------------------------------------------------------
+publico:
+  forma_lectura: secuencial-con-paths
+  nivel_entrada: engineer-senior-no-especialista-en-AI
+  perfil_tecnico_base: java-arquitecturas-contenerizadas
+
+  perfiles:
+
+    - id: solution-architect
+      nombre: "Solution Architect"
+      conocimiento_previo:
+        - arquitectura de servicios empresariales
+        - ciclo de vida de desarrollo complejo
+        - comunicación técnica con stakeholders
+        - decisiones de diseño y sus trade-offs
+        - patrones de integración empresarial
+      gaps_tipicos:
+        - implicaciones operacionales de decisiones de diseño AI
+        - evaluación de sistemas probabilísticos
+        - trade-offs específicos de patrones AI
+        - cómo los componentes AI fallan en producción
+      pregunta_dominante: "¿Qué construimos, por qué, y qué consecuencias tiene?"
+      path: paths/solution-architect.yml
+
+    - id: senior-software-engineer
+      nombre: "Senior Software Engineer"
+      conocimiento_previo:
+        - Java y arquitecturas contenerizadas
+        - microservicios y APIs REST
+        - CI/CD y observabilidad clásica
+        - testing y calidad de software
+        - gestión de dependencias y artefactos
+      gaps_tipicos:
+        - qué cambia cuando el sistema tiene un componente probabilístico
+        - el prompt como artefacto de software versionable y testeable
+        - por qué el testing clásico es necesario pero insuficiente
+        - evaluación como disciplina de ingeniería continua
+      pregunta_dominante: "¿Cómo lo construimos correctamente?"
+      path: paths/senior-software-engineer.yml
+
+    - id: platform-engineer
+      nombre: "Platform Engineer"
+      conocimiento_previo:
+        - operación de servicios distribuidos
+        - observabilidad clásica — logs, métricas, trazas
+        - gestión de plataformas internas
+        - CI/CD y gestión de releases
+        - SLOs y gestión de incidentes
+      gaps_tipicos:
+        - nuevos artefactos AI que gestionar — prompts, índices, embeddings
+        - observabilidad semántica más allá de métricas operacionales
+        - operación de índices vectoriales y embedding services
+        - gestión de drift y obsolescencia de modelos
+      pregunta_dominante: "¿Cómo lo sostenemos en producción?"
+      path: paths/platform-engineer.yml
+
+    - id: ai-infrastructure-team
+      nombre: "AI Infrastructure Team"
+      conocimiento_previo:
+        - infraestructura cloud y contenedores
+        - redes y almacenamiento distribuido
+        - capacity planning clásico
+        - seguridad de infraestructura
+        - gestión de costes de infraestructura
+      gaps_tipicos:
+        - infraestructura específica de inferencia — GPU, KV-cache, batching
+        - vector databases a escala — sizing, sharding, operación
+        - trade-offs coste/latencia específicos de AI
+        - cómo las decisiones de infraestructura condicionan la arquitectura
+      pregunta_dominante: "¿Sobre qué lo construimos y cómo escala?"
+      path: paths/ai-infrastructure-team.yml
+
+# ------------------------------------------------------------
+# AUTOR
+# ------------------------------------------------------------
+autor:
+  perfil: solution-engineer-ciclo-vida-completo-empresarial
+
+  conocimiento_validable_alto:
+    descripcion: >
+      Conocimiento validable con alta confianza — el autor puede
+      detectar errores tanto gruesos como sutiles
+    dominios:
+      - decisiones arquitectónicas y sus consecuencias sistémicas
+      - ciclo de vida de proyectos AI empresariales
+      - fricción entre diseño y operación en contexto real
+      - patrones de fallo en proyectos empresariales complejos
+      - trade-offs en contexto de restricciones organizacionales
+      - comunicación técnica entre perfiles distintos
+      - integración de sistemas AI con arquitecturas existentes Java/contenedores
+
+  conocimiento_validable_medio:
+    descripcion: >
+      Conocimiento validable con confianza media — el autor detecta
+      errores gruesos pero puede no detectar errores sutiles.
+      Requiere revisión más cuidadosa antes de snapshot.
+    dominios:
+      - retrieval engineering y diseño de pipelines RAG
+      - evaluation frameworks y métricas de calidad
+      - platform engineering para sistemas AI
+      - observabilidad de sistemas AI
+      - gestión de artefactos y ciclo de vida de modelos
+
+  requiere_validacion_externa:
+    descripcion: >
+      Dominios donde el autor no puede garantizar corrección técnica
+      profunda. Requieren revisor externo antes de publicación
+      en snapshot o declaración explícita de nivel de confianza.
+    dominios:
+      - seguridad de sistemas AI — prompt injection, threat modelling
+      - gobernanza regulatoria — EU AI Act, NIST AI RMF
+      - infraestructura de inferencia especializada — GPU, optimización
+      - arquitecturas multi-agente en producción real
+
+  politica_dominios_sin_cobertura:
+    opcion_preferida: validacion-externa
+    alternativa: declarar-nivel-confianza-en-snapshot
+    excluir_solo_si: no-hay-validador-disponible-y-dominio-no-es-critico
+
+# ------------------------------------------------------------
+# ÍNDICE
+# ------------------------------------------------------------
+indice:
+  logica: emergente-desde-notas
+  estado: pendiente-phase-2-alignment
+  referencia_externa:
+    descripcion: >
+      Índice de referencia generado top-down desde framework
+      conceptual. Usado como espejo para detectar gaps,
+      no como destino fijo.
+    fichero: ../referencia/handbook-index.md
+
+  politica_mutabilidad: >
+    El índice es mutable hasta Gate 1 — Index Validation.
+    Después de Gate 1 solo se modifica mediante decisión
+    editorial documentada en changelog-editorial.md con
+    justificación explícita y análisis de impacto en paths.
+
+  senales_revision:
+    - colision-de-granularidad
+    - concepto-huerfano-con-peso-propio
+    - capitulo-sin-origen-posible
+    - dos-capitulos-que-siempre-aparecen-juntos
+
+# ------------------------------------------------------------
+# TAXONOMÍA DE CAPÍTULOS
+# ------------------------------------------------------------
+taxonomia_capitulos:
+  fichero: config/chapter-types.yml
+  tipos:
+    - concept-introduction
+    - worked-example
+    - practice-problem
+    - synthesis
+    - field-pattern
+    - lab
+
+# ------------------------------------------------------------
+# PATHS
+# ------------------------------------------------------------
+paths:
+  directorio: paths/
+  politica: >
+    Cada perfil tiene un path completo que define secuencia
+    de entrada, núcleo, y contenido especializado. Los labs
+    están vinculados a paths — cada lab tiene perfil primario
+    y puede tener variantes para otros perfiles.
+  ficheros:
+    - paths/solution-architect.yml
+    - paths/senior-software-engineer.yml
+    - paths/platform-engineer.yml
+    - paths/ai-infrastructure-team.yml
+
+# ------------------------------------------------------------
+# CORPUS
+# ------------------------------------------------------------
+corpus:
+  notas:
+    directorio: ../../corpus-notas/
+    estado_actual:
+      - id: foundations
+        directorio: foundations/
+        estado: disponible
+        nivel: pedagogico
+        revision_pendiente: ajuste-de-nivel-para-publico-objetivo
+        notas_conocidas:
+          - introduction-to-ai-systems-engineering.md
+          - ai-system-types.md
+          - software-10-vs-software-20.md
+          - machine-learning-vs-llm.md
+          - tokens-and-context.md
+          - prompt-engineering.md
+          - limitations-of-llms.md
+
+  referencias:
+    fichero: ../../corpus-referencias/domain-refs.yml
+    estado: pendiente-de-construccion
+    prioridad_inicial:
+      - papers canónicos del dominio
+      - documentación técnica de referencia
+      - libros O-Reilly relevantes
+
+# ------------------------------------------------------------
+# CALIDAD
+# ------------------------------------------------------------
+calidad:
+  criterios_fichero: config/quality-criteria.yml
+
+  umbrales_por_estado:
+    borrador-autor:
+      descripcion: >
+        Contenido escrito por el autor, sin revisión formal.
+        Puede entrar en snapshot con declaración explícita.
+      validacion_requerida: ninguna
+      visible_en_snapshot: si-con-etiqueta
+
+    borrador-autor-validado:
+      descripcion: >
+        Borrador del autor revisado contra criterios de calidad
+        y referencias externas. Estado mínimo para snapshot
+        sin etiqueta de advertencia.
+      validacion_requerida: evaluacion-automatica-aprobada
+      visible_en_snapshot: si
+
+    revisado-externamente:
+      descripcion: >
+        Capítulo validado por revisor externo con expertise
+        en el dominio. Requerido para dominios fuera del
+        perímetro de conocimiento del autor.
+      validacion_requerida: revisor-externo-aprobado
+      visible_en_snapshot: si
+
+  umbral_snapshot_publicable:
+    capitulos_nucleo_minimo: 80%
+    estado_minimo: borrador-autor-validado
+    dominios_criticos_requieren: revisado-externamente
+    paths_completos_minimo: 1
+
+  evaluacion:
+    automatica:
+      activa: true
+      cubre:
+        - cobertura de secciones del formato destino
+        - coherencia con descripcion del capitulo en indice
+        - consistencia terminologica
+        - nivel vs publico objetivo declarado
+        - presencia de afirmaciones sin soporte
+    humana:
+      requerida_antes_de: publicacion
+      roles:
+        - autor para dominios de confianza alta y media
+        - revisor-externo para dominios fuera de perimetro
+
+# ------------------------------------------------------------
+# POLÍTICA DE USO DE IA
+# ------------------------------------------------------------
+politica_ia:
+  fichero: ai-usage-policy.yml
+
+# ------------------------------------------------------------
+# SNAPSHOTS
+# ------------------------------------------------------------
+snapshots:
+  politica: cuando-umbral-calidad-cumplido-y-nucleo-coherente
+  frecuencia: por-criterio-no-por-calendario
+  formato: git-tag-semantico
+  convencion_nombre: "v{major}.{minor}-{fase}"
+  changelog: changelog-editorial.md
+
+  declaracion_estado_por_capitulo:
+    visible_al_lector: true
+    niveles:
+      - label: "✔ Revisado"
+        descripcion: borrador-autor-validado o superior
+      - label: "🚧 En elaboración"
+        descripcion: borrador-autor sin validacion formal
+      - label: "⚠ Pendiente revisión externa"
+        descripcion: dominio fuera de perimetro del autor
+      - label: "📝 Placeholder"
+        descripcion: capitulo definido sin contenido
+
+# ------------------------------------------------------------
+# FASES DEL PROCESO
+# ------------------------------------------------------------
+fases:
+  - id: phase-0
+    nombre: Inception
+    estado: completada
+    artefactos_salida:
+      - editorial-config.yml
+      - config/chapter-types.yml
+      - paths/*.yml
+      - ai-usage-policy.yml
+      - changelog-editorial.md
+
+  - id: phase-1
+    nombre: Migration
+    estado: pendiente
+    descripcion: Mover corpus de notas existente a estructura del repositorio
+
+  - id: phase-2
+    nombre: Alignment
+    estado: pendiente
+    descripcion: Mapeo de notas al índice — análisis de cobertura y gaps
+
+  - id: phase-3
+    nombre: Stabilization
+    estado: pendiente
+    descripcion: Iteraciones sobre el índice hasta estabilización
+
+  - id: gate-1
+    nombre: Index Validation
+    estado: pendiente
+    tipo: gate
+    descripcion: Validación del índice antes de producción de contenido
+
+  - id: phase-4
+    nombre: Enrichment
+    estado: pendiente
+    descripcion: Síntesis asistida, escritura de gaps, evaluación
+
+  - id: gate-2
+    nombre: Content Review
+    estado: pendiente
+    tipo: gate
+    descripcion: Revisión formal antes de construcción de labs
+
+  - id: phase-5
+    nombre: Labs
+    estado: pendiente
+    descripcion: Diseño y construcción de hands-on labs
+
+  - id: phase-6
+    nombre: Publishing
+    estado: pendiente
+    descripcion: Proceso de snapshot y liberación
+
+  - id: phase-7
+    nombre: Maintenance
+    estado: pendiente
+    descripcion: Ciclo continuo post-publicación

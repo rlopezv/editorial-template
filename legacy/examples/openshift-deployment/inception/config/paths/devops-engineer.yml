@@ -1,0 +1,102 @@
+# ============================================================
+# PATH: DevOps / SRE Engineer
+# ============================================================
+
+perfil:
+  id: devops-engineer
+  nombre: "DevOps / SRE Engineer"
+  pregunta_dominante: "¿Cómo automatizo, observo y mantengo mis aplicaciones en OpenShift?"
+  forma_lectura: secuencial-primera-vez-referencia-despues
+
+conocimiento_previo:
+  - pipelines CI/CD en Jenkins, GitLab CI o equivalente
+  - scripting bash y gestión de entornos Linux
+  - Docker y conceptos básicos de contenedores
+  - gestión de configuración y secretos en entornos clásicos
+  - nociones de observabilidad — logs centralizados, alertas básicas
+  - git y gestión de ramas
+
+gaps_tipicos:
+  - modelo de seguridad de OpenShift — por qué las imágenes Docker
+    que funcionan en local fallan en OpenShift sin modificaciones
+  - Tekton y el paradigma declarativo de pipelines como código
+  - diferencias entre Kubernetes vanilla y OpenShift en operación diaria
+  - cómo estructurar los manifests YAML para que sean mantenibles
+  - observabilidad en OpenShift — dónde están los logs, cómo funcionan
+    las métricas de Prometheus integradas
+  - cómo funciona el routing y el networking de aplicaciones
+    desde dentro del clúster
+
+transferencias_peligrosas:
+  lista:
+    - >
+      Un Dockerfile que funciona localmente con `docker run` puede
+      fallar en OpenShift porque las SCC por defecto prohíben
+      ejecutar como root. El error no siempre es obvio —
+      el pod arranca y falla sin mensaje claro.
+    - >
+      Un pipeline de Jenkins con scripts bash no es equivalente
+      a un Pipeline de Tekton. Tekton es declarativo y cada
+      Task es un contenedor independiente. El estado no persiste
+      entre Tasks sin un PersistentVolumeClaim explícito.
+    - >
+      Los secretos en OpenShift no son variables de entorno
+      que simplemente se inyectan. Requieren configuración
+      explícita en el Deployment y políticas de acceso RBAC.
+      Un cambio de secreto no reinicia automáticamente los pods.
+
+zona_entrada:
+  descripcion: >
+    Capítulos que establecen el modelo mental de OpenShift
+    para alguien que llega desde Docker y CI/CD clásico.
+    Qué es un clúster desde la perspectiva del desarrollador/DevOps,
+    qué objetos existen, y por qué el modelo de seguridad
+    cambia todo lo que sabes sobre ejecutar contenedores.
+  enfasis: >
+    El modelo de seguridad de OpenShift primero —
+    antes de desplegar nada. La mayoría de los problemas
+    iniciales vienen de no entender las SCC.
+  capitulos: pendiente-phase-3
+
+zona_nucleo:
+  descripcion: >
+    Despliegue, configuración y operación de aplicaciones.
+    El ciclo completo desde el primer despliegue hasta
+    la automatización con pipelines y la respuesta a fallos.
+  enfasis_especifico:
+    - ciclo de vida de un Deployment — estrategias, rollbacks, probes
+    - gestión de configuración y secretos con ConfigMaps y Secrets
+    - pipelines con Tekton — estructura, Tasks, Workspaces
+    - observabilidad de aplicaciones — logs, métricas, alertas
+    - networking de aplicaciones — Services, Routes, y cuándo usar cada uno
+    - cómo diagnosticar un pod que no arranca o que falla en runtime
+  capitulos: pendiente-phase-3
+
+zona_especializada:
+  descripcion: >
+    Automatización avanzada, GitOps y operaciones a escala.
+  temas_esperados:
+    - GitOps con ArgoCD sobre OpenShift
+    - autoscaling — HPA y configuración desde la perspectiva de aplicación
+    - gestión de múltiples entornos — dev, staging, producción
+    - patrones de rollout avanzados — blue/green, canary
+    - gestión de costes y resource quotas desde perspectiva de equipo
+    - service mesh básico — cuándo vale la pena la complejidad
+  capitulos: pendiente-phase-3
+
+labs:
+  enfasis: >
+    Escenarios de pipeline completo y troubleshooting de despliegues.
+    El DevOps engineer como responsable del ciclo CI/CD completo
+    y primera línea de diagnóstico de fallos de aplicación.
+  labs_primarios: pendiente-phase-5
+  variantes_de_labs_otros_perfiles:
+    - en labs de plataforma: foco en los requisitos que el DevOps
+      necesita de la plataforma para hacer su trabajo
+
+lecturas_complementarias:
+  recomendados:
+    - zona_entrada de operations-engineer para entender la perspectiva
+      de quien gestiona el servicio en producción
+    - zona_especializada de platform-engineer para entender las
+      restricciones que la plataforma impone

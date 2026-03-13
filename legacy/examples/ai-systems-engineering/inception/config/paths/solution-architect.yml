@@ -1,0 +1,97 @@
+# ============================================================
+# PATH: Solution Architect
+# ============================================================
+# Vista del libro configurada para el perfil Solution Architect.
+# Define secuencia de lectura, énfasis por capítulo,
+# y vinculación con labs.
+# Los capítulos específicos se asignarán en Phase 3
+# cuando el índice esté estabilizado.
+# ============================================================
+
+perfil:
+  id: solution-architect
+  nombre: "Solution Architect"
+  pregunta_dominante: "¿Qué construimos, por qué, y qué consecuencias tiene?"
+  forma_lectura: secuencial-con-consulta-posterior
+
+conocimiento_previo:
+  - arquitectura de servicios empresariales
+  - ciclo de vida de desarrollo complejo
+  - decisiones de diseño y trade-offs
+  - comunicación con stakeholders técnicos y de negocio
+  - patrones de integración empresarial
+
+gaps_tipicos:
+  - implicaciones operacionales de decisiones de diseño AI
+  - evaluación como criterio de diseño — no solo de calidad
+  - trade-offs específicos de patrones AI en producción
+  - cómo los componentes AI fallan cuando interactúan
+
+transferencias_peligrosas:
+  descripcion: >
+    Analogías del conocimiento previo que son parcialmente
+    correctas pero pueden llevar a decisiones erróneas
+  lista:
+    - >
+      Un sistema RAG no es simplemente un microservicio
+      con una base de datos. La naturaleza probabilística
+      del componente central cambia los contratos de calidad.
+    - >
+      El versionado de prompts no es equivalente al versionado
+      de código. Un cambio de prompt puede cambiar el comportamiento
+      del sistema sin cambiar una línea de código.
+    - >
+      Los SLOs de un sistema AI no se pueden definir igual
+      que los de un sistema determinístico. La calidad
+      de respuesta no es binaria.
+
+zona_entrada:
+  descripcion: >
+    Capítulos que el Solution Architect debe leer primero.
+    Establecen el marco conceptual desde la perspectiva
+    de decisiones de diseño y sus consecuencias.
+  enfasis: >
+    Marco conceptual y consecuencias sistémicas de las decisiones.
+    Menos detalle de implementación, más implicaciones de diseño.
+  capitulos: pendiente-phase-3
+
+zona_nucleo:
+  descripcion: >
+    Capítulos compartidos con todos los perfiles.
+    El Solution Architect los lee con énfasis en
+    decisiones de diseño y trade-offs arquitectónicos.
+  enfasis_especifico:
+    - criterios de selección de patrones arquitectónicos
+    - implicaciones operacionales de cada decisión de diseño
+    - cómo comunicar decisiones a distintos stakeholders
+    - cuándo una decisión de diseño es reversible y cuándo no
+  capitulos: pendiente-phase-3
+
+zona_especializada:
+  descripcion: >
+    Capítulos principalmente relevantes para este perfil.
+    Otros perfiles pueden leerlos como contexto opcional.
+  temas_esperados:
+    - frameworks de decisión arquitectónica para sistemas AI
+    - reference architectures completas con justificación de decisiones
+    - case studies desde perspectiva de diseño
+    - comunicación de arquitecturas AI a stakeholders no técnicos
+    - evaluación como criterio de diseño — cómo diseñar para ser evaluable
+  capitulos: pendiente-phase-3
+
+labs:
+  enfasis: >
+    El mismo escenario que otros perfiles pero con foco
+    en la decisión arquitectónica y su justificación.
+    El lector debe decidir qué construir y por qué,
+    anticipando las consecuencias operacionales.
+  labs_primarios: pendiente-phase-5
+  variantes_de_labs_otros_perfiles: pendiente-phase-5
+
+lecturas_complementarias:
+  descripcion: >
+    Capítulos de otros perfiles recomendados para
+    entender las implicaciones de las decisiones de diseño
+  recomendados:
+    - zona_especializada de platform-engineer
+    - zona_entrada de ai-infrastructure-team

@@ -1,0 +1,32 @@
+# ============================================================
+# CHAPTER METADATA TEMPLATE
+# Copy to content/[chapter-slug]/metadata.yml
+# ============================================================
+
+id: ~                          # e.g. ch013-rag-architecture
+titulo: ~
+seccion: ~                     # section number
+tipo: ~                        # from chapter-types.yml
+perfiles_primarios: []         # [solution-architect, senior-software-engineer, ...]
+perfiles_secundarios: []
+
+estado: placeholder            # placeholder | borrador-autor | borrador-autor-validado | revisado-externamente
+origen: ~                      # autor | elicitado | ia-sintetizado-validado | ia-sintetizado-pendiente
+
+notas_origen: []               # list of source note files from corpus/notes/
+referencias_externas: []       # references from domain-refs.yml used in evaluation
+
+validacion:
+  tipo: ~                      # experto-propio | experto-externo | nominal | pendiente
+  validador: ~
+  fecha: ~
+  notas: ~
+
+confianza_declarada: ~         # alta | media | baja | no-validado
+visible_al_lector: true
+
+tiene_lab: false
+lab_fichero: ~                 # lab.md if exists
+
+ultima_revision: ~
+proxima_revision: ~            # for maintenance scheduling

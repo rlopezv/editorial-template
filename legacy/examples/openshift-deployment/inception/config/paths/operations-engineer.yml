@@ -1,0 +1,114 @@
+# ============================================================
+# PATH: Operations Engineer
+# ============================================================
+
+perfil:
+  id: operations-engineer
+  nombre: "Operations Engineer"
+  pregunta_dominante: "¿Cómo mantengo el servicio en producción y respondo cuando algo falla?"
+  forma_lectura: referencia-con-secuencia-de-entrada
+
+conocimiento_previo:
+  - operación de aplicaciones en entornos pre-contenedor — VMs, bare metal
+  - gestión de incidentes y runbooks tradicionales
+  - monitorización con herramientas clásicas — Nagios, Zabbix, Prometheus básico
+  - comprensión del ciclo de vida de releases y ventanas de cambio
+  - trabajo con tickets y procesos ITIL
+  - scripting básico — bash, Python para automatización operacional
+
+gaps_tipicos:
+  - qué cambia en el modelo operacional cuando la infraestructura es inmutable
+    y no se puede hacer SSH al proceso
+  - cómo leer y actuar sobre los eventos y condiciones de OpenShift
+  - troubleshooting de pods — secuencia de diagnóstico sin acceso directo al contenedor
+  - cuándo escalar vs cuándo investigar un problema de rendimiento
+  - cómo los conceptos de Kubernetes se mapean a los conceptos operacionales
+    conocidos — qué es un pod para quien venía de gestionar procesos en una VM
+  - cuándo escalar al equipo de plataforma y qué información llevar
+
+transferencias_peligrosas:
+  lista:
+    - >
+      No puedes hacer SSH a un pod como hacías SSH a una VM.
+      El diagnóstico en OpenShift empieza por eventos y logs —
+      no por acceder al sistema de ficheros del contenedor.
+      La primera respuesta ante un fallo debe ser `oc describe pod`
+      y `oc logs`, no buscar cómo conectarse al proceso.
+    - >
+      Un pod que se reinicia no es equivalente a un proceso
+      que se ha caído y ha vuelto a arrancar. Puede haber
+      perdido estado, puede estar en un nodo diferente,
+      y puede haber un CrashLoopBackOff que indica un fallo
+      estructural, no transitorio.
+    - >
+      Reiniciar el servidor para resolver un problema
+      no existe en OpenShift de la misma forma. Eliminar
+      un pod hace que se recree — pero si el problema es
+      de la aplicación o de la configuración, el nuevo pod
+      tendrá el mismo problema. El reinicio resuelve menos
+      de lo que resolvía antes.
+
+zona_entrada:
+  descripcion: >
+    Capítulos que establecen el modelo mental de OpenShift
+    para alguien que viene de operar aplicaciones en entornos
+    clásicos. Qué existe, qué ha cambiado, y cómo la
+    inmutabilidad de la infraestructura cambia las prácticas
+    operacionales fundamentales.
+  enfasis: >
+    El modelo de ciclo de vida de pods primero.
+    Qué significa que la infraestructura sea inmutable
+    para las prácticas operacionales conocidas.
+    Mapeo explícito de conceptos clásicos a conceptos OpenShift.
+  capitulos: pendiente-phase-3
+
+zona_nucleo:
+  descripcion: >
+    Operaciones de día 2. Diagnóstico, respuesta a incidentes,
+    mantenimiento y gestión del servicio en producción.
+  enfasis_especifico:
+    - secuencia de diagnóstico de pods — eventos, logs, conditions
+    - gestión de incidentes en OpenShift — quién hace qué
+    - observabilidad operacional — qué métricas y alertas importan
+    - gestión de despliegues desde perspectiva operacional —
+      rollouts, rollbacks, y cuándo intervenir
+    - runbooks para fallos comunes — pod en CrashLoopBackOff,
+      ImagePullError, OOMKilled, pod en Pending
+    - cuándo y cómo escalar al equipo de plataforma o al equipo
+      de desarrollo
+  capitulos: pendiente-phase-3
+
+zona_especializada:
+  descripcion: >
+    Madurez operacional. Capacidad de anticipar problemas
+    y de operar con autonomía en incidentes complejos.
+  temas_esperados:
+    - gestión de capacidad desde perspectiva operacional —
+      cuándo los límites de recursos son el problema
+    - operación durante upgrades — qué cambia, qué monitorizar
+    - gestión de ventanas de cambio en entornos contenedorizados
+    - runbooks avanzados — problemas de networking, problemas de storage
+    - métricas de SLO desde perspectiva operacional —
+      cómo construir un cuadro de mando que refleje el servicio real
+    - gestión de backups y recuperación — qué se puede recuperar y qué no
+  capitulos: pendiente-phase-3
+
+labs:
+  enfasis: >
+    Escenarios de incidente y diagnóstico. El operations engineer
+    como responsable de mantener el servicio y de detectar
+    cuándo el problema está en la aplicación, en la configuración
+    o en la plataforma — y actuar en consecuencia.
+  labs_primarios: pendiente-phase-5
+  variantes_de_labs_otros_perfiles:
+    - en labs de DevOps: foco en la información operacional
+      que el DevOps engineer debe dejar disponible para operaciones
+    - en labs de plataforma: foco en la comunicación entre
+      operaciones y plataforma durante un incidente
+
+lecturas_complementarias:
+  recomendados:
+    - zona_entrada de devops-engineer para entender el ciclo
+      de vida del despliegue que el operations engineer recibe
+    - zona_nucleo de platform-engineer para entender
+      qué puede y no puede resolver el equipo de plataforma

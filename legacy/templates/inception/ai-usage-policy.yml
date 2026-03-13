@@ -1,0 +1,76 @@
+# ============================================================
+# AI USAGE POLICY
+# ============================================================
+# Define el uso permitido de IA por tipo de operación.
+# Generado en Phase 0 — Inception, Decision 5.
+#
+# Niveles de uso:
+#   permitido-sin-restriccion — IA puede generar sin revisión especial
+#   permitido-con-revision    — IA genera, autor revisa antes de aceptar
+#   asistido                  — IA asiste, autor decide y redacta
+#   prohibido                 — operación debe ser 100% del autor
+#
+# Ver examples/ para instancias de referencia completas.
+# ============================================================
+
+meta:
+  version: v0
+  proyecto: ""
+  fecha: ""
+
+operaciones:
+
+  # Generación de artefactos de proceso (índice, config, referencias)
+  artefactos_proceso:
+    nivel: permitido-con-revision
+    nota: >
+      El autor revisa y valida todos los artefactos generados
+      por IA antes de aceptarlos como válidos.
+
+  # Síntesis de capítulos desde notas del autor
+  sintesis_desde_notas_autor:
+    nivel: permitido-con-revision
+    nota: >
+      La síntesis parte de notas del autor. El autor valida
+      que el contenido sintetizado es fiel a su conocimiento.
+
+  # Síntesis de capítulos sin notas del autor (gaps)
+  sintesis_sin_notas:
+    nivel: asistido
+    nota: >
+      El autor dirige la síntesis y valida cada afirmación.
+      El origen se declara como ia-sintetizado-pendiente
+      hasta validación explícita del autor.
+
+  # Elicitación de conocimiento tácito
+  elicitacion:
+    nivel: asistido
+    nota: >
+      La IA hace preguntas. El conocimiento lo aporta el autor.
+      El output de elicitación es del autor, no de la IA.
+
+  # Evaluación de calidad de capítulos
+  evaluacion:
+    nivel: permitido-con-revision
+    nota: >
+      La IA evalúa contra criterios declarados.
+      El autor revisa la evaluación antes de actuar sobre ella.
+
+  # Capítulos de tipo field-pattern
+  field_pattern:
+    nivel: prohibido
+    nota: >
+      Los field-patterns documentan experiencia operacional real
+      del autor. No pueden generarse ni sintetizarse con IA.
+
+etiquetas_origen:
+  - id: autor
+    descripcion: Escrito íntegramente por el autor
+  - id: elicitado
+    descripcion: Extraído mediante elicitación — conocimiento del autor
+  - id: ia-sintetizado-validado
+    descripcion: Sintetizado con IA, validado por el autor
+  - id: ia-sintetizado-pendiente
+    descripcion: Sintetizado con IA, pendiente de validación
+  - id: ia-generado-sin-base
+    descripcion: Generado sin notas del autor — máxima cautela

@@ -1,0 +1,201 @@
+# ============================================================
+# EDITORIAL CONFIG
+# ============================================================
+# Artefacto central del proceso editorial.
+# Generado en Phase 0 — Inception mediante:
+#   prompts/inception/fill-editorial-config.md
+# Modificar solo mediante decisión editorial documentada
+# en inception/changelog-editorial.md
+#
+# Ver examples/ para instancias de referencia completas.
+# ============================================================
+
+proyecto:
+  titulo: ""
+  subtitulo: ""
+  # tipo: libro-tecnico-pedagogico | documentacion-proyecto | handbook-referencia | tesis-tfm
+  instancia: ""
+  tipo: origen
+  derivada_de: null
+  instancias_derivadas: []
+
+# ------------------------------------------------------------
+# SCOPE
+# ------------------------------------------------------------
+scope:
+  # objetivo: pedagogico | referencia | operacional | academico
+  objetivo: ""
+
+  dominio:
+    cubre: []
+    no_cubre: []
+
+  propuesta_valor_diferencial: >
+
+  libros_referencia_externos: []
+    # - titulo: ""
+    #   autor: ""
+    #   funcion: calibracion-nivel-tecnico | referencia-patrones | referencia-estilo
+
+# ------------------------------------------------------------
+# PÚBLICO OBJETIVO
+# ------------------------------------------------------------
+publico:
+  # forma_lectura: secuencial | secuencial-con-paths | referencia | mixto
+  forma_lectura: ""
+  nivel_entrada: ""
+  perfil_tecnico_base: ""
+
+  perfiles: []
+    # - id: ""
+    #   nombre: ""
+    #   conocimiento_previo: []
+    #   gaps_tipicos: []
+    #   pregunta_dominante: ""
+    #   path: paths/[id].yml
+
+# ------------------------------------------------------------
+# AUTOR
+# ------------------------------------------------------------
+autor:
+  perfil: ""
+
+  conocimiento_validable_alto:
+    descripcion: >
+    dominios: []
+
+  conocimiento_validable_medio:
+    descripcion: >
+    dominios: []
+
+  requiere_validacion_externa:
+    descripcion: >
+    dominios: []
+
+  politica_dominios_sin_cobertura:
+    opcion_preferida: validacion-externa
+    alternativa: declarar-nivel-confianza-en-snapshot
+    excluir_solo_si: no-hay-validador-disponible-y-dominio-no-es-critico
+
+# ------------------------------------------------------------
+# ÍNDICE
+# ------------------------------------------------------------
+indice:
+  logica: emergente-desde-notas
+  estado: pendiente-phase-2-alignment
+
+  politica_mutabilidad: >
+    El índice es mutable hasta Gate 1 — Index Validation.
+    Después de Gate 1 solo se modifica mediante decisión
+    editorial documentada en changelog-editorial.md.
+
+  senales_revision:
+    - colision-de-granularidad
+    - concepto-huerfano-con-peso-propio
+    - capitulo-sin-origen-posible
+    - dos-capitulos-que-siempre-aparecen-juntos
+
+# ------------------------------------------------------------
+# TAXONOMÍA DE CAPÍTULOS
+# ------------------------------------------------------------
+taxonomia_capitulos:
+  fichero: config/chapter-types.yml
+  tipos: []
+
+# ------------------------------------------------------------
+# PATHS
+# ------------------------------------------------------------
+paths:
+  directorio: paths/
+  politica: >
+    Cada perfil tiene un path completo que define secuencia
+    de entrada, núcleo, y contenido especializado.
+  ficheros: []
+
+# ------------------------------------------------------------
+# CALIDAD
+# ------------------------------------------------------------
+calidad:
+  umbrales_por_estado:
+    borrador-autor:
+      validacion_requerida: ninguna
+      visible_en_snapshot: si-con-etiqueta
+
+    borrador-autor-validado:
+      validacion_requerida: evaluacion-automatica-aprobada
+      visible_en_snapshot: si
+
+    revisado-externamente:
+      validacion_requerida: revisor-externo-aprobado
+      visible_en_snapshot: si
+
+  umbral_snapshot_publicable:
+    capitulos_nucleo_minimo: 80%
+    estado_minimo: borrador-autor-validado
+    dominios_criticos_requieren: revisado-externamente
+    paths_completos_minimo: 1
+
+# ------------------------------------------------------------
+# POLÍTICA DE USO DE IA
+# ------------------------------------------------------------
+politica_ia:
+  fichero: ai-usage-policy.yml
+
+# ------------------------------------------------------------
+# SNAPSHOTS
+# ------------------------------------------------------------
+snapshots:
+  politica: cuando-umbral-calidad-cumplido-y-nucleo-coherente
+  frecuencia: por-criterio-no-por-calendario
+  formato: git-tag-semantico
+  convencion_nombre: "v{major}.{minor}-{fase}"
+  changelog: changelog-editorial.md
+
+  declaracion_estado_por_capitulo:
+    visible_al_lector: true
+    niveles:
+      - label: "✔ Revisado"
+        descripcion: borrador-autor-validado o superior
+      - label: "🚧 En elaboración"
+        descripcion: borrador-autor sin validacion formal
+      - label: "⚠ Pendiente revisión externa"
+        descripcion: dominio fuera de perimetro del autor
+      - label: "📝 Placeholder"
+        descripcion: capitulo definido sin contenido
+
+# ------------------------------------------------------------
+# FASES DEL PROCESO
+# ------------------------------------------------------------
+fases:
+  - id: phase-0
+    nombre: Inception
+    estado: en-progreso
+  - id: phase-1
+    nombre: Migration
+    estado: pendiente
+  - id: phase-2
+    nombre: Alignment
+    estado: pendiente
+  - id: phase-3
+    nombre: Stabilization
+    estado: pendiente
+  - id: gate-1
+    nombre: Index Validation
+    estado: pendiente
+    tipo: gate
+  - id: phase-4
+    nombre: Enrichment
+    estado: pendiente
+  - id: gate-2
+    nombre: Content Review
+    estado: pendiente
+    tipo: gate
+  - id: phase-5
+    nombre: Labs
+    estado: pendiente
+  - id: phase-6
+    nombre: Publishing
+    estado: pendiente
+  - id: phase-7
+    nombre: Maintenance
+    estado: pendiente

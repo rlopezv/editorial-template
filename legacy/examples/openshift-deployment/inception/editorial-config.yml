@@ -1,0 +1,357 @@
+# ============================================================
+# EDITORIAL CONFIG
+# OpenShift Deployment — Instancia Operacional
+# ============================================================
+# Artefacto generado en Phase 0 — Inception
+# Gobierna todas las decisiones del proceso editorial
+# Modificar solo mediante decisión editorial documentada
+# en changelog-editorial.md
+# ============================================================
+
+proyecto:
+  titulo: "OpenShift Deployment"
+  subtitulo: "Despliegue y operaciones de aplicaciones en entornos OpenShift empresariales"
+  instancia: operacional
+  tipo: origen
+  derivada_de: null
+  instancias_derivadas: []
+
+# ------------------------------------------------------------
+# SCOPE
+# ------------------------------------------------------------
+scope:
+  objetivo: operacional
+
+  dominio:
+    cubre:
+      - ciclo de vida completo de aplicaciones sobre OpenShift
+      - despliegue, configuración y operación de workloads
+      - pipelines CI/CD con Tekton y OpenShift Pipelines
+      - observabilidad operacional — métricas, logs, trazas en OpenShift
+      - gestión de configuración, secretos y entornos
+      - networking de aplicaciones — routes, services, ingress
+      - patrones de fallo en despliegues empresariales reales
+      - troubleshooting y respuesta a incidentes
+      - gestión de capacidad y escalado de aplicaciones
+      - seguridad operacional — SCC, RBAC, network policies
+
+    no_cubre:
+      - instalación y configuración inicial del clúster OpenShift
+      - gestión de la infraestructura subyacente — nodos, etcd, networking L3
+      - administración del plano de control
+      - entornos edge o single-node OpenShift
+      - desarrollo de aplicaciones — el libro empieza donde el código está listo
+      - OpenShift AI / model serving
+
+  propuesta_valor_diferencial: >
+    Conocimiento operacional desde la perspectiva de quien despliega
+    y mantiene aplicaciones — no de quien instala el clúster. Cubre
+    la fricción real entre lo que dice la documentación de Red Hat y
+    lo que ocurre en un entorno empresarial con múltiples equipos,
+    políticas de seguridad heredadas y aplicaciones que no fueron
+    diseñadas para Kubernetes. Los patrones de fallo que solo aparecen
+    cuando el clúster lo gestiona otro equipo y tú solo tienes acceso
+    a tu namespace.
+
+  libros_referencia_externos:
+    - titulo: "Kubernetes in Action"
+      autor: "Marko Lukša"
+      funcion: referencia-patrones-sistemas
+    - titulo: "Production Kubernetes"
+      autor: "Josh Rosso et al."
+      funcion: calibracion-nivel-tecnico
+    - titulo: "Kubernetes Patterns"
+      autor: "Bilgin Ibryam, Roland Huß"
+      funcion: referencia-patrones-sistemas
+
+# ------------------------------------------------------------
+# PÚBLICO OBJETIVO
+# ------------------------------------------------------------
+publico:
+  forma_lectura: secuencial-con-paths
+  nivel_entrada: engineer-con-experiencia-linux-y-cicd-sin-experiencia-openshift
+  perfil_tecnico_base: linux-bash-git-docker-jenkins-o-gitlab
+
+  perfiles:
+
+    - id: devops-engineer
+      nombre: "DevOps / SRE Engineer"
+      conocimiento_previo:
+        - pipelines CI/CD en Jenkins, GitLab CI o equivalente
+        - scripting bash y gestión de entornos Linux
+        - Docker y conceptos básicos de contenedores
+        - gestión de configuración y secretos en entornos clásicos
+        - nociones de observabilidad — logs centralizados, alertas básicas
+        - git y gestión de ramas
+      gaps_tipicos:
+        - modelo de seguridad de OpenShift — SCC y por qué rompen imágenes Docker
+        - Tekton y el paradigma declarativo de pipelines como código
+        - diferencias entre Kubernetes vanilla y OpenShift en operación diaria
+        - observabilidad en OpenShift — dónde están los logs, cómo funcionan las métricas
+        - cómo funciona el networking de aplicaciones desde dentro del clúster
+      pregunta_dominante: "¿Cómo automatizo, observo y mantengo mis aplicaciones en OpenShift?"
+      path: paths/devops-engineer.yml
+
+    - id: platform-engineer
+      nombre: "Platform Engineer"
+      conocimiento_previo:
+        - administración de sistemas Linux y scripting avanzado
+        - operación de servicios distribuidos
+        - experiencia con al menos un orquestador — Kubernetes, Nomad o equivalente
+        - gestión de infraestructura como código — Ansible, Terraform o equivalente
+        - gestión de incidentes y SLOs en entornos de producción
+        - seguridad operacional — políticas, accesos, bastionado
+      gaps_tipicos:
+        - modelo de tenancy de OpenShift — proyectos, cuotas, límites por namespace
+        - operación de OpenShift Pipelines y gestión del ciclo de vida de pipelines
+        - gestión de imágenes — ImageStreams, registry interno, políticas de pull
+        - cómo los workloads de aplicación afectan a la estabilidad del clúster
+        - developer experience desde perspectiva de plataforma interna
+      pregunta_dominante: "¿Cómo opero la plataforma para que los equipos de aplicación trabajen sin fricciones?"
+      path: paths/platform-engineer.yml
+
+    - id: operations-engineer
+      nombre: "Operations Engineer"
+      conocimiento_previo:
+        - operación de aplicaciones en entornos pre-contenedor — VMs, bare metal
+        - gestión de incidentes y runbooks tradicionales
+        - monitorización con herramientas clásicas — Nagios, Zabbix, Prometheus básico
+        - comprensión del ciclo de vida de releases y ventanas de cambio
+        - trabajo con tickets y procesos ITIL
+      gaps_tipicos:
+        - qué cambia en el modelo operacional cuando la infraestructura es inmutable
+        - cómo leer y actuar sobre los eventos y condiciones de OpenShift
+        - troubleshooting de pods — cómo diagnosticar sin SSH directo al proceso
+        - cuándo escalar vs cuándo investigar un problema de rendimiento
+        - cómo los conceptos de Kubernetes se mapean a los conceptos operacionales conocidos
+      pregunta_dominante: "¿Cómo mantengo el servicio en producción y respondo cuando algo falla?"
+      path: paths/operations-engineer.yml
+
+# ------------------------------------------------------------
+# AUTOR
+# ------------------------------------------------------------
+autor:
+  perfil: platform-engineer-ciclo-vida-aplicaciones-openshift-empresarial
+
+  conocimiento_validable_alto:
+    descripcion: >
+      Conocimiento validable con alta confianza — el autor puede
+      detectar errores tanto gruesos como sutiles
+    dominios:
+      - despliegue y operación de aplicaciones sobre OpenShift y Kubernetes
+      - pipelines CI/CD con Tekton y OpenShift Pipelines
+      - troubleshooting de workloads — diagnóstico y resolución
+      - modelo de seguridad operacional — SCC, RBAC, network policies desde perspectiva de aplicación
+      - observabilidad de aplicaciones — métricas, logs, trazas en OpenShift
+      - patrones de fallo en entornos empresariales con restricciones de seguridad
+      - gestión de configuración y secretos con GitOps
+
+  conocimiento_validable_medio:
+    descripcion: >
+      Conocimiento validable con confianza media — el autor detecta
+      errores gruesos pero puede no detectar errores sutiles.
+      Requiere revisión más cuidadosa antes de snapshot.
+    dominios:
+      - gestión avanzada de capacidad y autoscaling — HPA, VPA, KEDA
+      - service mesh con OpenShift Service Mesh / Istio
+      - GitOps con ArgoCD y Flux en entornos empresariales
+      - gestión avanzada de networking — multihoming, SR-IOV
+
+  requiere_validacion_externa:
+    descripcion: >
+      Dominios donde el autor no puede garantizar corrección técnica
+      profunda. Requieren revisor externo antes de publicación
+      en snapshot o declaración explícita de nivel de confianza.
+    dominios:
+      - seguridad avanzada — compliance frameworks, CIS benchmarks para aplicaciones
+      - arquitecturas multiclúster y federación
+      - OpenShift en entornos air-gapped y restricted networks
+
+  politica_dominios_sin_cobertura:
+    opcion_preferida: validacion-externa
+    alternativa: declarar-nivel-confianza-en-snapshot
+    excluir_solo_si: no-hay-validador-disponible-y-dominio-no-es-critico
+
+# ------------------------------------------------------------
+# ÍNDICE
+# ------------------------------------------------------------
+indice:
+  logica: emergente-desde-proceso
+  estado: pendiente-phase-0-inception
+  nota: >
+    Libro nuevo sin corpus de notas previo. El índice emerge
+    de la combinación de experiencia del autor y estructura
+    del dominio — no de notas existentes. Phase 0 genera
+    index-v0 directamente desde el framework conceptual del autor.
+
+  politica_mutabilidad: >
+    El índice es mutable hasta Gate 1 — Index Validation.
+    Después de Gate 1 solo se modifica mediante decisión
+    editorial documentada en changelog-editorial.md con
+    justificación explícita y análisis de impacto en paths.
+
+  senales_revision:
+    - colision-de-granularidad
+    - concepto-huerfano-con-peso-propio
+    - capitulo-sin-origen-posible
+    - dos-capitulos-que-siempre-aparecen-juntos
+    - tema-que-es-configuracion-no-concepto
+
+# ------------------------------------------------------------
+# TAXONOMÍA DE CAPÍTULOS
+# ------------------------------------------------------------
+taxonomia_capitulos:
+  fichero: config/chapter-types.yml
+  tipos:
+    - concept-introduction
+    - worked-example
+    - practice-problem
+    - synthesis
+    - field-pattern
+    - lab
+
+# ------------------------------------------------------------
+# PATHS
+# ------------------------------------------------------------
+paths:
+  directorio: paths/
+  politica: >
+    Cada perfil tiene un path completo que define secuencia
+    de entrada, núcleo, y contenido especializado. Los labs
+    están vinculados a paths — cada lab tiene perfil primario
+    y puede tener variantes para otros perfiles.
+  ficheros:
+    - paths/devops-engineer.yml
+    - paths/platform-engineer.yml
+    - paths/operations-engineer.yml
+
+# ------------------------------------------------------------
+# CORPUS
+# ------------------------------------------------------------
+corpus:
+  notas:
+    estado: sin-corpus-previo
+    nota: >
+      Libro nuevo. El corpus se construye durante Phase 0
+      mediante elicitación. No hay notas previas para migrar.
+      Phase 1 — Migration no aplica.
+
+  referencias:
+    fichero: ../references/domain-refs.yml
+    estado: pendiente-de-construccion
+    prioridad_inicial:
+      - documentación oficial Red Hat OpenShift
+      - documentación upstream Kubernetes
+      - papers y posts de referencia sobre Kubernetes operators y patterns
+
+# ------------------------------------------------------------
+# CALIDAD
+# ------------------------------------------------------------
+calidad:
+  umbrales_por_estado:
+    borrador-autor:
+      validacion_requerida: ninguna
+      visible_en_snapshot: si-con-etiqueta
+
+    borrador-autor-validado:
+      validacion_requerida: evaluacion-automatica-aprobada
+      visible_en_snapshot: si
+
+    revisado-externamente:
+      validacion_requerida: revisor-externo-aprobado
+      visible_en_snapshot: si
+
+  umbral_snapshot_publicable:
+    capitulos_nucleo_minimo: 80%
+    estado_minimo: borrador-autor-validado
+    dominios_criticos_requieren: revisado-externamente
+    paths_completos_minimo: 1
+
+# ------------------------------------------------------------
+# POLÍTICA DE USO DE IA
+# ------------------------------------------------------------
+politica_ia:
+  fichero: ai-usage-policy.yml
+
+# ------------------------------------------------------------
+# SNAPSHOTS
+# ------------------------------------------------------------
+snapshots:
+  politica: cuando-umbral-calidad-cumplido-y-nucleo-coherente
+  frecuencia: por-criterio-no-por-calendario
+  formato: git-tag-semantico
+  convencion_nombre: "v{major}.{minor}-{fase}"
+  changelog: changelog-editorial.md
+
+  declaracion_estado_por_capitulo:
+    visible_al_lector: true
+    niveles:
+      - label: "✔ Revisado"
+        descripcion: borrador-autor-validado o superior
+      - label: "🚧 En elaboración"
+        descripcion: borrador-autor sin validacion formal
+      - label: "⚠ Pendiente revisión externa"
+        descripcion: dominio fuera de perimetro del autor
+      - label: "📝 Placeholder"
+        descripcion: capitulo definido sin contenido
+
+# ------------------------------------------------------------
+# FASES DEL PROCESO
+# ------------------------------------------------------------
+fases:
+  - id: phase-0
+    nombre: Inception
+    estado: en-progreso
+    nota: >
+      Sin corpus previo — Phase 1 Migration no aplica.
+      Tras Phase 0, pasar directamente a Phase 2 — Alignment
+      sobre el index-v0 generado en Inception.
+    artefactos_salida:
+      - editorial-config.yml
+      - config/chapter-types.yml
+      - paths/*.yml
+      - ai-usage-policy.yml
+      - changelog-editorial.md
+      - ../index/history/index-v0.md
+      - ../references/domain-refs.yml
+
+  - id: phase-1
+    nombre: Migration
+    estado: no-aplica
+    nota: >
+      No hay corpus de notas previo para migrar.
+      Omitir esta fase y pasar directamente a Phase 2.
+
+  - id: phase-2
+    nombre: Alignment
+    estado: pendiente
+
+  - id: phase-3
+    nombre: Stabilization
+    estado: pendiente
+
+  - id: gate-1
+    nombre: Index Validation
+    estado: pendiente
+    tipo: gate
+
+  - id: phase-4
+    nombre: Enrichment
+    estado: pendiente
+
+  - id: gate-2
+    nombre: Content Review
+    estado: pendiente
+    tipo: gate
+
+  - id: phase-5
+    nombre: Labs
+    estado: pendiente
+
+  - id: phase-6
+    nombre: Publishing
+    estado: pendiente
+
+  - id: phase-7
+    nombre: Maintenance
+    estado: pendiente
