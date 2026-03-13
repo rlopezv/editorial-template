@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "editorial-template"
+version = "0.1.0"
+description = "Production-grade editorial template for AI-assisted technical documentation"
+requires-python = ">=3.10"
+dependencies = ["PyYAML>=6.0"]

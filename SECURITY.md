@@ -1,11 +1,12 @@
 # Security Policy
 
-This repository currently contains documentation tooling.
+This repository contains documentation tooling and automation scripts.
 
-If you discover a security vulnerability in:
+If you discover a security issue affecting:
 
 - scripts
 - automation
 - templates
+- local developer tooling
 
-please report it privately through GitHub security advisories.
+please report it privately through GitHub Security Advisories or the repository maintainers.

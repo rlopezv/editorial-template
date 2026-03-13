@@ -1,0 +1,4 @@
+{
+  "name": "editorial-template",
+  "build": { "dockerfile": "Dockerfile" }
+}

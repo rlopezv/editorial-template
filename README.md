@@ -1,4 +1,3 @@
-
 # Editorial Documentation Engineering Template
 
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -6,7 +5,7 @@
 ![Documentation](https://img.shields.io/badge/docs-in%20progress-orange)
 ![AI Assisted](https://img.shields.io/badge/AI-assisted-purple)
 
-A **production‑grade template repository** for building **large‑scale technical documentation systems** using structured editorial workflows and AI‑assisted processes.
+A **production-grade template repository** for building **large-scale technical documentation systems** using structured editorial workflows and AI-assisted processes.
 
 This repository provides the foundation for creating documentation such as:
 
@@ -19,14 +18,14 @@ This repository provides the foundation for creating documentation such as:
 The system is designed to support **documentation at scale (100k–1M+ tokens)** while maintaining editorial coherence through:
 
 - structured editorial workflows
-- session‑based editing
+- session-based editing
 - corpus governance
 - an **Editorial Knowledge Graph**
 - automated validation and QA
 
 ---
 
-# Documentation Engineering Model
+## Documentation Engineering Model
 
 Traditional documentation workflows break down when:
 
@@ -39,15 +38,15 @@ This project introduces a **Documentation Engineering approach** combining:
 
 - editorial governance
 - structured metadata
-- graph‑based knowledge modeling
+- graph-based knowledge modeling
 - reproducible editing sessions
-- AI‑assisted workflows
+- AI-assisted workflows
 
 ---
 
-# Repository Architecture
+## Repository Architecture
 
-```
+```text
 corpus/            knowledge sources
 manuscript/        final documentation
 editorial/         editorial governance
@@ -59,9 +58,10 @@ templates/         chapter templates
 phases/            editorial workflow definition
 docs/              documentation
 ```
+
 ---
 
-# Editorial Pipeline
+## Editorial Pipeline
 
 ```mermaid
 flowchart LR
@@ -80,7 +80,7 @@ Each phase progressively transforms **raw knowledge into structured documentatio
 
 ---
 
-# Editorial Knowledge Graph
+## Editorial Knowledge Graph
 
 Large documentation projects require structural coherence.
 
@@ -112,7 +112,7 @@ This enables:
 
 ---
 
-# Session‑Based Editing
+## Session-Based Editing
 
 Documentation work is organized into **editorial sessions**.
 
@@ -132,11 +132,11 @@ Sessions ensure:
 
 ---
 
-# Branching Model
+## Branching Model
 
 The repository follows a **main + develop integration model**.
 
-```
+```text
 main
  ↑
 develop
@@ -148,34 +148,30 @@ chore/*
 experiment/*
 ```
 
-### main
-
+### `main`
 Stable branch representing the **publishable state**.
 
-### develop
-
+### `develop`
 Integration branch for ongoing development.
 
-### feature/*
-
+### `feature/*`
 Used for new functionality.
 
-Example:
+Examples:
 
-```
+```text
 feature/editorial-template-structure
 feature/editorial-graph
 feature/session-workflow
 feature/corpus-governance
 ```
 
-### experiment/*
-
+### `experiment/*`
 Used for research and exploration.
 
-Example:
+Examples:
 
-```
+```text
 experiment/neo4j-graph
 experiment/agent-editor
 experiment/rag-corpus
@@ -183,39 +179,42 @@ experiment/rag-corpus
 
 ---
 
-# Intended Users
+## Intended Users
 
 This template is designed for:
 
 - documentation teams
 - technical writers
 - engineering organizations
-- AI‑assisted documentation workflows
+- AI-assisted documentation workflows
 - large knowledge systems
 
 ---
 
-# License
+## Quick Start
 
-MIT License.
-
-See `LICENSE`.
+1. Read `docs/QUICKSTART.md`
+2. Review `docs/WORKFLOW.md`
+3. Review `docs/SESSION-STRATEGY.md`
+4. Run `./init.sh` to initialize a new project repository from the template
 
 ---
 
-# Contributing
+## License
+
+MIT License. See `LICENSE`.
+
+## Contributing
 
 See `CONTRIBUTING.md`.
 
----
-
-# Security
+## Security
 
 See `SECURITY.md`.
 
 ---
 
-# Vision
+## Vision
 
 This project treats documentation as an **engineering artifact** rather than static text.
 
@@ -226,4 +225,4 @@ The goal is to create a system where documentation can be:
 - validated
 - evolved
 
-using structured workflows and AI‑assisted processes.
+using structured workflows and AI-assisted processes.

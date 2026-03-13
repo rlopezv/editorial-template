@@ -9,7 +9,7 @@ Key principles:
 - knowledge must be traceable
 - AI assistance must be governed
 
-The system will combine:
+The system combines:
 
 - editorial workflows
 - structured metadata

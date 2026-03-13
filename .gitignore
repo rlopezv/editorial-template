@@ -4,6 +4,8 @@ __pycache__/
 *.pyo
 *.pyd
 *.egg-info/
+.pytest_cache/
+.mypy_cache/
 
 # Virtual environments
 .venv/
@@ -24,10 +26,14 @@ Thumbs.db
 # Temporary
 tmp/
 temp/
+dist/
+build/
 
 # Graph snapshots
 editorial-graph/data/snapshots/*
 
 # Session packs
 editorial-graph/session-packs/*
+!editorial-graph/session-packs/**/.gitkeep
 sessions/logs/*
+!sessions/logs/.gitkeep

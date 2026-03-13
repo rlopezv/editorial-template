@@ -1,0 +1,3 @@
+# Synthesis
+
+Placeholder chapter template.

@@ -4,3 +4,4 @@
 *.yml text
 *.yaml text
 *.py text
+*.sh text eol=lf

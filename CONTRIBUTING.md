@@ -2,11 +2,9 @@
 
 Thank you for considering contributing.
 
-This repository is evolving toward a **Documentation Engineering framework** for AI-assisted technical documentation.
+This repository evolves as a **Documentation Engineering framework** for AI-assisted technical documentation.
 
----
-
-# Contribution Types
+## Contribution Types
 
 Contributions may include:
 
@@ -17,42 +15,36 @@ Contributions may include:
 - validation tooling
 - knowledge graph improvements
 
----
+## Development Model
 
-# Development Model
+The repository follows a structured evolution model:
 
-The repository follows a **structured evolution model**:
+1. repository bootstrap
+2. template structure
+3. editorial pipeline
+4. session workflow
+5. editorial knowledge graph
+6. automation and validation tooling
 
-1. Repository bootstrap
-2. Editorial pipeline definition
-3. Corpus governance layer
-4. Editorial knowledge graph
-5. Session-based editing workflows
-6. Automation and validation tooling
-
----
-
-# Pull Request Guidelines
+## Pull Request Guidelines
 
 Before submitting a PR:
 
-- ensure documentation changes are clear
-- avoid introducing breaking structural changes
-- explain the rationale for workflow modifications
+- keep changes scoped
+- avoid unnecessary structural breakage
+- document the rationale for workflow changes
+- update docs when the architecture changes
 
----
+## Code Style
 
-# Code Style
-
-Future scripts will follow:
+Scripts are expected to follow:
 
 - Python 3.11+
-- Black formatting
-- type hints encouraged
+- readable structure
+- type hints when practical
+- predictable CLI behavior
 
----
-
-# Reporting Issues
+## Reporting Issues
 
 Use GitHub Issues and include:
 
