@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary
+tmp/
+temp/
+
+# Graph snapshots
+editorial-graph/data/snapshots/*
+
+# Session packs
+editorial-graph/session-packs/*
+sessions/logs/*
